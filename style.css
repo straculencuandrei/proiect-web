@@ -63,14 +63,14 @@ body {
   z-index: -1;
 }
 
-/* Lightning strike flash overlay */
+/* Lightning strike flash overlay (expanded and intensified) */
 .lightning-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 70% 15%, rgba(224, 231, 255, 0.85) 0%, rgba(139, 92, 246, 0.15) 50%, transparent 100%);
+  background: radial-gradient(circle at 50% 25%, rgba(230, 242, 255, 0.92) 0%, rgba(139, 92, 246, 0.28) 65%, transparent 100%);
   mix-blend-mode: screen;
   opacity: 0;
   pointer-events: none;
@@ -97,6 +97,38 @@ body {
   93.8% {
     opacity: 0.45;
   }
+}
+
+/* Semi-transparent drifting clouds to overlay and blur lightning */
+.cloud-bg {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.015) 0%, rgba(139, 92, 246, 0.005) 50%, transparent 100%);
+  filter: blur(60px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cloud-1 {
+  top: 8%;
+  left: 15%;
+  width: 480px;
+  height: 300px;
+  animation: driftClouds 70s linear infinite;
+}
+
+.cloud-2 {
+  top: 22%;
+  right: 10%;
+  width: 550px;
+  height: 340px;
+  animation: driftClouds 90s linear infinite reverse;
+}
+
+@keyframes driftClouds {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(35px, -15px); }
+  100% { transform: translate(0, 0); }
 }
 
 /* Scalable responsive SVG Forest Silhouette */
@@ -177,17 +209,37 @@ body {
 /* ==========================================================================
    GUNS.LOL CARD COMPONENT (Glassmorphic)
    ========================================================================== */
+.profile-name {
+  font-size: 1.6rem; /* Compact size */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #ffffff 28%, #a2a2a2 50%, #ffffff 68%, #555555 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+  animation: chromeLightning 13s infinite;
+}
+
+@keyframes chromeLightning {
+  0%, 90%, 95%, 100% {
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45)) brightness(1);
+  }
+  91%, 92.2%, 93.8% {
+    filter: drop-shadow(0 0 10px rgba(230, 240, 255, 0.75)) brightness(1.65);
+  }
+}
+
 .profile-card {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 375px; /* Sleeker, compact centered rectangle */
   background: var(--card-bg);
-  backdrop-filter: blur(14px); /* Finer, softer background blur */
+  backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.035); /* Extremely thin and dark border */
-  border-radius: 22px;
-  padding: 2.2rem 1.8rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45); /* Softened shadow that blends flatly */
+  border: 1px solid rgba(255, 255, 255, 0.035); /* Thin, dim border outline */
+  border-radius: 18px;
+  padding: 1.4rem 1.4rem; /* Tight compact padding */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   z-index: 10;
   animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -196,7 +248,7 @@ body {
 @keyframes cardFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(12px);
   }
   100% {
     opacity: 1;
@@ -204,15 +256,9 @@ body {
   }
 }
 
-/* Soft low-opacity blended accent bar */
+/* Soft low-opacity blended accent bar hidden */
 .card-accent-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
-  opacity: 0.25; /* Softened and blended */
+  display: none;
 }
 
 /* ==========================================================================
@@ -226,9 +272,9 @@ body {
 /* Dynamic Rotating Neon Ring around Avatar */
 .avatar-wrapper {
   position: relative;
-  width: 94px;
-  height: 94px;
-  margin: 0.5rem auto 1.2rem;
+  width: 78px; /* Compact width */
+  height: 78px;
+  margin: 0.2rem auto 0.6rem;
 }
 
 .avatar {
@@ -236,7 +282,7 @@ body {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(13, 13, 16, 1);
+  border: 2px solid rgba(13, 13, 16, 1);
   background: #111;
   position: relative;
   z-index: 2;
@@ -245,15 +291,15 @@ body {
 
 .avatar-ring {
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
+  top: -2.5px;
+  left: -2.5px;
+  right: -2.5px;
+  bottom: -2.5px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
   z-index: 1;
   animation: rotateRing 8s linear infinite; /* Slower and calmer */
-  opacity: 0.45; /* Softened ring opacity to blend in dark */
+  opacity: 0.35; /* Softened ring opacity to blend in dark */
 }
 
 @keyframes rotateRing {
@@ -323,14 +369,14 @@ body {
    ========================================================================== */
 .card-bio {
   text-align: center;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.8rem; /* Tight compact margin */
 }
 
 .bio-text {
-  font-size: 0.95rem;
+  font-size: 0.88rem; /* Finer font size */
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.4rem; /* Closer spacing */
   font-weight: 300;
 }
 
@@ -357,7 +403,7 @@ body {
   border: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.035), transparent);
-  margin: 1.5rem 0;
+  margin: 0.7rem 0; /* Cut in half to bring elements closer */
 }
 
 /* ==========================================================================
@@ -366,17 +412,17 @@ body {
 .links-section {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.5rem; /* Smaller gaps */
 }
 
 .link-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.95rem 1.25rem;
+  padding: 0.75rem 1rem; /* Compact padding */
   background: rgba(255, 255, 255, 0.006); /* Nearly fully transparent */
   border: 1px solid rgba(255, 255, 255, 0.025); /* Faint, dim outline */
-  border-radius: 14px;
+  border-radius: 10px; /* Modern tight radius */
   cursor: pointer;
   text-decoration: none;
   color: inherit;
