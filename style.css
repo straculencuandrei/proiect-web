@@ -1,11 +1,17 @@
 /* ==========================================================================
-   MINIMALIST CENTERED NECO-ARC STYLE SHEET
+   GUNS.LOL PREMIUM STYLE SHEET FOR WALLIEZ
    ========================================================================== */
 
 :root {
-  --bg-matte-black: #000000;
-  --text-white: #ffffff;
+  --bg-matte-black: #050505;
+  --card-bg: rgba(13, 13, 16, 0.65);
+  --text-primary: #ffffff;
+  --text-muted: #94a3b8;
+  --text-sub: #64748b;
   --font-brand: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
 }
 
 /* Base resets */
@@ -18,99 +24,493 @@
 
 body {
   background-color: var(--bg-matte-black);
-  color: var(--text-white);
+  color: var(--text-primary);
   font-family: var(--font-brand);
   min-height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Fully Centered Container */
+/* ==========================================================================
+   AMBIENT BACKGROUND (Sleek Radial Grid & Glowing Mesh)
+   ========================================================================== */
+.background-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-matte-black);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.09) 0%, rgba(236, 72, 153, 0.03) 60%, transparent 100%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINER
+   ========================================================================== */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
 }
 
-/* Responsive Neco-Arc Wrapper with Tactile Button Micro-interactions */
-.neco-container {
+/* ==========================================================================
+   GUNS.LOL CARD COMPONENT (Glassmorphic)
+   ========================================================================== */
+.profile-card {
   position: relative;
-  width: 75vw;
-  max-width: 360px;
-  max-height: 72vh;
+  width: 100%;
+  max-width: 440px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 2rem 1.8rem;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  z-index: 10;
+  animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Top Neon Gradient Accent Bar */
+.card-accent-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+}
+
+/* ==========================================================================
+   HEADER SEGMENT (Avatar, Badges, Name)
+   ========================================================================== */
+.card-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Dynamic Rotating Neon Ring around Avatar */
+.avatar-wrapper {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  margin: 0.5rem auto 1.2rem;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(13, 13, 16, 1);
+  background: #111;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.avatar-ring {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  z-index: 1;
+  animation: rotateRing 6s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes rotateRing {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.avatar-wrapper:hover .avatar {
+  transform: scale(1.05);
+}
+
+/* Name section details */
+.name-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -webkit-tap-highlight-color: transparent;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 
-.neco-image {
-  width: 100%;
-  height: auto;
-  max-height: 72vh;
-  object-fit: contain;
-  display: block;
-  /* Soft warm ambient shadow to match the character's blonde hair */
-  filter: drop-shadow(0 20px 45px rgba(245, 158, 11, 0.12));
+.profile-name {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
 }
 
-/* Hover lift */
-.neco-container:hover {
-  transform: scale(1.035);
+/* Badges */
+.badge-list {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
 
-/* Tactile click squish */
-.neco-container:active {
-  transform: scale(0.96);
+.badge-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+
+.badge-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.1);
+}
+
+.badge-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.profile-tag {
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  font-weight: 400;
 }
 
 /* ==========================================================================
-   NON-OVERLAPPING SPEECH BUBBLE (Anchored Above the Head)
+   BIO SECTION (Clean monospace detail)
    ========================================================================== */
-.speech-bubble {
-  position: absolute;
-  bottom: 94%;   /* Securely placed above Neco-Arc's ears */
-  left: 60%;     /* Offset slightly to the right to avoid vertical center clashing */
-  background: #ffffff;
-  color: #000000;
-  padding: 0.5rem 0.85rem;
-  border-radius: 16px 16px 16px 0px;
-  font-weight: 600;
-  font-size: 0.86rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transform: scale(0.78) translateY(12px);
-  transition: all 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-  white-space: nowrap;
-  z-index: 10;
+.card-bio {
+  text-align: center;
+  margin-bottom: 1.6rem;
 }
 
-.speech-bubble.active {
-  opacity: 1;
-  transform: scale(1) translateY(0px);
+.bio-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+  font-weight: 300;
+}
+
+.bio-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-sub);
+}
+
+.bio-stat {
+  letter-spacing: -0.01em;
+}
+
+.bio-divider {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+/* Horizontal Dividers */
+.card-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  margin: 1.5rem 0;
 }
 
 /* ==========================================================================
-   RESPONSIVE LAYOUT (Mobile adjustments)
+   LINKS SECTION (Brand Color Glows)
+   ========================================================================== */
+.links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.link-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: color 0.28s ease;
+}
+
+.link-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-title {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.link-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  margin-top: 0.1rem;
+}
+
+.link-arrow {
+  width: 14px;
+  height: 14px;
+  color: var(--text-sub);
+  opacity: 0.5;
+  transform: translateX(0);
+  transition: all 0.28s ease;
+}
+
+/* Brand Card hover states */
+.link-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+}
+
+.link-card:hover .link-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+  color: var(--text-primary);
+}
+
+.link-card:hover .link-icon {
+  color: var(--text-primary);
+}
+
+/* Discord Hover Glow */
+.link-card.discord:hover {
+  border-color: rgba(88, 101, 242, 0.4);
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.18);
+}
+.link-card.discord:hover .link-icon {
+  color: #5865F2;
+}
+
+/* GitHub Hover Glow */
+.link-card.github:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+.link-card.github:hover .link-icon {
+  color: #ffffff;
+}
+
+/* Steam Hover Glow */
+.link-card.steam:hover {
+  border-color: rgba(0, 173, 238, 0.4);
+  box-shadow: 0 0 20px rgba(0, 173, 238, 0.18);
+}
+.link-card.steam:hover .link-icon {
+  color: #00adee;
+}
+
+/* ==========================================================================
+   SIMULATED MUSIC PLAYER COMPONENT
+   ========================================================================== */
+.music-player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.1rem;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.music-player:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.player-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* Spinning Vinyl Record */
+.vinyl-wrapper {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  background: radial-gradient(circle at center, #222 0%, #111 60%, #000 100%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  animation: rotateVinyl 4s linear infinite;
+  animation-play-state: paused;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vinyl-center {
+  width: 10px;
+  height: 10px;
+  background: var(--accent-purple);
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.vinyl-wrapper.playing {
+  animation-play-state: running;
+}
+
+@keyframes rotateVinyl {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.track-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.track-author {
+  font-size: 0.72rem;
+  color: var(--text-sub);
+  margin-top: 0.05rem;
+}
+
+/* Dancing CSS Wave visualizer */
+.wave-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+  padding-bottom: 2px;
+}
+
+.wave-visualizer .bar {
+  width: 2.5px;
+  height: 3px;
+  background: var(--accent-purple);
+  border-radius: 2px;
+  transition: height 0.15s ease;
+}
+
+.wave-visualizer.playing .bar {
+  background: linear-gradient(to top, var(--accent-purple), var(--accent-pink));
+}
+
+/* Keyframes trigger only when .playing is attached */
+.wave-visualizer.playing .bar:nth-child(1) { animation: danceBar 0.8s ease infinite alternate; }
+.wave-visualizer.playing .bar:nth-child(2) { animation: danceBar 0.9s ease infinite alternate 0.15s; }
+.wave-visualizer.playing .bar:nth-child(3) { animation: danceBar 0.7s ease infinite alternate 0.3s; }
+.wave-visualizer.playing .bar:nth-child(4) { animation: danceBar 0.6s ease infinite alternate 0.05s; }
+
+@keyframes danceBar {
+  0% { height: 3px; }
+  100% { height: 16px; }
+}
+
+/* ==========================================================================
+   TOAST POPUP COMPONENT (Interactive notification popup)
+   ========================================================================== */
+.toast-popup {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 40px);
+  background: rgba(255, 255, 255, 0.98);
+  color: #000000;
+  padding: 0.7rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  z-index: 100;
+  pointer-events: none;
+  transition: all 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast-popup.active {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN Anchor scaling
    ========================================================================== */
 @media (max-width: 480px) {
-  .neco-container {
-    max-width: 280px;
-    max-height: 65vh;
+  .profile-card {
+    padding: 1.8rem 1.4rem;
   }
-  .speech-bubble {
-    font-size: 0.78rem;
-    padding: 0.4rem 0.75rem;
-    bottom: 96%;
-    left: 55%;
+  .profile-name {
+    font-size: 1.6rem;
+  }
+  .bio-text {
+    font-size: 0.9rem;
   }
 }

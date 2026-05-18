@@ -1,58 +1,92 @@
 /* ==========================================================================
-   MINIMALIST INTERACTIVE LOGIC FOR NECO-ARC
+   MINIMALIST INTERACTIVE LOGIC FOR GUNS.LOL PROFILE
    ========================================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const necoContainer = document.getElementById('neco-container');
-  const bubble = document.getElementById('speech-bubble');
-  const bubbleText = bubble.querySelector('span');
+  
+  // DOM Elements
+  const discordBtn = document.getElementById('discord-btn');
+  const steamBtn = document.getElementById('steam-btn');
+  const toast = document.getElementById('toast-popup');
+  const toastText = toast.querySelector('span');
 
-  // Cozy meows blended with signature Neco-Arc catchphrases
-  const expressions = [
-    'burenyuu~',
-    'nyan!',
-    'doridoridori~',
-    'prr?',
-    'purr...',
-    'meow! ♥',
-    'mew!',
-    '😺',
-    'shhh!',
-    'bounce!',
-    'play~',
-    'kys',
-    'die nigga',
-    'i luv u'
-  ];
+  const musicPlayer = document.getElementById('music-player');
+  const vinylDisc = document.getElementById('vinyl-disc');
+  const waveVis = document.getElementById('wave-vis');
+  const trackTitle = document.getElementById('track-title');
 
-  let isBubbleActive = false;
-  let bubbleTimeout;
+  let toastTimeout;
+  let isPlaying = false;
 
-  // Add click interaction to Neco-Arc
-  if (necoContainer) {
-    necoContainer.addEventListener('click', () => {
-      // Pick a random expression
-      const randomIndex = Math.floor(Math.random() * expressions.length);
-      const chosenWord = expressions[randomIndex];
+  /* ==========================================================================
+     1. CLIPBOARD COPY & CUSTOM TOAST NOTIFICATION
+     ========================================================================== */
+  function showToast(message) {
+    if (toastTimeout) clearTimeout(toastTimeout);
+    
+    toastText.textContent = message;
+    toast.classList.add('active');
 
-      // Render and display bubble
-      showSpeechBubble(chosenWord);
+    // Slide out after 2.5 seconds
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove('active');
+    }, 2500);
+  }
+
+  // Discord Copy Action
+  if (discordBtn) {
+    discordBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const discordTag = '@walliez';
+      
+      navigator.clipboard.writeText(discordTag)
+        .then(() => {
+          showToast('Copied! Discord tag copied to clipboard.');
+        })
+        .catch(() => {
+          // Fallback if clipboard API is blocked by browser permissions
+          showToast('Discord Tag: @walliez');
+        });
     });
   }
 
-  function showSpeechBubble(text) {
-    if (isBubbleActive) {
-      clearTimeout(bubbleTimeout);
-    }
+  // Steam Copy Action
+  if (steamBtn) {
+    steamBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const steamUser = 'walliez';
 
-    bubbleText.textContent = text;
-    bubble.classList.add('active');
-    isBubbleActive = true;
-
-    // Fade out speech bubble after 1.5 seconds of display
-    bubbleTimeout = setTimeout(() => {
-      bubble.classList.remove('active');
-      isBubbleActive = false;
-    }, 1500);
+      navigator.clipboard.writeText(steamUser)
+        .then(() => {
+          showToast('Copied! Steam username copied to clipboard.');
+        })
+        .catch(() => {
+          showToast('Steam Username: walliez');
+        });
+    });
   }
+
+  /* ==========================================================================
+     2. SIMULATED MUSIC PLAYER CONTROLS
+     ========================================================================== */
+  if (musicPlayer && vinylDisc && waveVis && trackTitle) {
+    musicPlayer.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+
+      if (isPlaying) {
+        // Toggle animations on
+        vinylDisc.classList.add('playing');
+        waveVis.classList.add('playing');
+        trackTitle.textContent = 'Silent Lofi Night (Playing)';
+        showToast('Now Playing: Silent Lofi Night 🎵');
+      } else {
+        // Toggle animations off
+        vinylDisc.classList.remove('playing');
+        waveVis.classList.remove('playing');
+        trackTitle.textContent = 'Silent Lofi Night';
+        showToast('Audio Paused ⏸️');
+      }
+    });
+  }
+
 });
