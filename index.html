@@ -24,6 +24,7 @@
     <canvas id="lightning-canvas" class="lightning-canvas"></canvas>
     <div class="cloud-bg cloud-1"></div>
     <div class="cloud-bg cloud-2"></div>
+    <div class="stars-overlay"></div>
     
     <!-- Scalable Forest SVG layers at the bottom -->
     <svg class="forest-background" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -43,32 +44,32 @@
       
       <!-- Far Forest Layer (Purple tinted, illuminated on lightning flashes) -->
       <g class="forest-far">
-        <use href="#pine-tree" x="80" y="240" transform="scale(1.2)" />
-        <use href="#pine-tree" x="220" y="250" transform="scale(1)" />
-        <use href="#pine-tree" x="360" y="230" transform="scale(1.3)" />
-        <use href="#pine-tree" x="500" y="260" transform="scale(0.9)" />
-        <use href="#pine-tree" x="640" y="240" transform="scale(1.15)" />
-        <use href="#pine-tree" x="780" y="250" transform="scale(1)" />
-        <use href="#pine-tree" x="920" y="220" transform="scale(1.4)" />
-        <use href="#pine-tree" x="1060" y="260" transform="scale(0.95)" />
-        <use href="#pine-tree" x="1200" y="240" transform="scale(1.2)" />
-        <use href="#pine-tree" x="1340" y="250" transform="scale(1.1)" />
+        <g class="wind-tree w1"><use href="#pine-tree" x="80" y="240" transform="scale(1.2)" /></g>
+        <g class="wind-tree w2"><use href="#pine-tree" x="220" y="250" transform="scale(1)" /></g>
+        <g class="wind-tree w3"><use href="#pine-tree" x="360" y="230" transform="scale(1.3)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="500" y="260" transform="scale(0.9)" /></g>
+        <g class="wind-tree w2"><use href="#pine-tree" x="640" y="240" transform="scale(1.15)" /></g>
+        <g class="wind-tree w3"><use href="#pine-tree" x="780" y="250" transform="scale(1)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="920" y="220" transform="scale(1.4)" /></g>
+        <g class="wind-tree w2"><use href="#pine-tree" x="1060" y="260" transform="scale(0.95)" /></g>
+        <g class="wind-tree w3"><use href="#pine-tree" x="1200" y="240" transform="scale(1.2)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="1340" y="250" transform="scale(1.1)" /></g>
         <rect x="0" y="255" width="1440" height="70" />
       </g>
       
       <!-- Near Forest Layer (Deep solid black, partially illuminated by flashes) -->
       <g class="forest-near">
-        <use href="#pine-tree" x="40" y="270" transform="scale(0.9)" />
-        <use href="#pine-tree" x="150" y="260" transform="scale(1.1)" />
-        <use href="#pine-tree" x="290" y="280" transform="scale(0.85)" />
-        <use href="#pine-tree" x="420" y="265" transform="scale(1)" />
-        <use href="#pine-tree" x="580" y="270" transform="scale(0.95)" />
-        <use href="#pine-tree" x="710" y="255" transform="scale(1.15)" />
-        <use href="#pine-tree" x="850" y="275" transform="scale(0.8)" />
-        <use href="#pine-tree" x="980" y="260" transform="scale(1.05)" />
-        <use href="#pine-tree" x="1120" y="270" transform="scale(0.9)" />
-        <use href="#pine-tree" x="1270" y="255" transform="scale(1.1)" />
-        <use href="#pine-tree" x="1390" y="275" transform="scale(0.85)" />
+        <g class="wind-tree w3"><use href="#pine-tree" x="40" y="270" transform="scale(0.9)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="150" y="260" transform="scale(1.1)" /></g>
+        <g class="wind-tree w2"><use href="#pine-tree" x="290" y="280" transform="scale(0.85)" /></g>
+        <g class="wind-tree w3"><use href="#pine-tree" x="420" y="265" transform="scale(1)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="580" y="270" transform="scale(0.95)" /></g>
+        <g class="wind-tree w2"><use href="#pine-tree" x="710" y="255" transform="scale(1.15)" /></g>
+        <g class="wind-tree w3"><use href="#pine-tree" x="850" y="275" transform="scale(0.8)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="980" y="260" transform="scale(1.05)" /></g>
+        <g class="wind-tree w2"><use href="#pine-tree" x="1120" y="270" transform="scale(0.9)" /></g>
+        <g class="wind-tree w3"><use href="#pine-tree" x="1270" y="255" transform="scale(1.1)" /></g>
+        <g class="wind-tree w1"><use href="#pine-tree" x="1390" y="275" transform="scale(0.85)" /></g>
         <rect x="0" y="280" width="1440" height="45" />
       </g>
     </svg>
