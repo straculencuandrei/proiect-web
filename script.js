@@ -1,25 +1,18 @@
 /* ==========================================================================
-   INTERACTIVE LOGIC & EFFECTS FOR WALLIEZ WEBSITE
+   MINIMALIST INTERACTIVE LOGIC FOR CAT LOAF
    ========================================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('interactive-container');
   const wrapper = document.getElementById('animation-wrapper');
-  const title = document.getElementById('brand-title');
   const bubble = document.getElementById('speech-bubble');
   const bubbleText = bubble.querySelector('span');
 
-  // Background blobs
-  const blobPurple = document.querySelector('.blob-purple');
-  const blobBlue = document.querySelector('.blob-blue');
-  const blobCoral = document.querySelector('.blob-coral');
-
-  // Cat Eyes for tracking
+  // Cat Eyes for cursor tracking and winking
   const eyesGroup = document.getElementById('cat-eyes-group');
   const eyeLeft = document.getElementById('cat-eye-left');
   const eyeRight = document.getElementById('cat-eye-right');
 
-  // Cozy cat expressions
+  // Cozy minimalist expressions
   const catExpressions = [
     'prr?', 
     'purr...', 
@@ -27,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'mew!', 
     '😺', 
     'cozy~', 
-    'walliez!', 
+    'mew?', 
     '*blink*'
   ];
 
@@ -35,102 +28,58 @@ document.addEventListener('DOMContentLoaded', () => {
   let bubbleTimeout;
 
   /* ==========================================================================
-     1. PARALLAX EFFECT & EYE TRACKING ON MOUSEMOVE
+     1. SUBTLE DYNAMIC CURSOR EYE-TRACKING
      ========================================================================== */
   window.addEventListener('mousemove', (e) => {
     const { clientX, clientY } = e;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
 
-    // Normalize coordinates around center (-1 to 1)
-    const mouseX = (clientX - width / 2) / (width / 2);
-    const mouseY = (clientY - height / 2) / (height / 2);
-
-    // Parallax: Shift elements in different depths/directions
-    // Title moves in opposite direction of mouse for extreme depth
-    if (title) {
-      const titleX = -50 + (mouseX * -15); // Offset from center -50%
-      const titleY = -60 + (mouseY * -15); // Offset from center -60%
-      title.style.transform = `translate(${titleX}%, ${titleY}%)`;
-    }
-
-    // Card moves subtly with the mouse
-    if (wrapper) {
-      const cardX = mouseX * 12;
-      const cardY = mouseY * 12;
-      const rotateX = -mouseY * 6; // Add subtle 3D tilt
-      const rotateY = mouseX * 6;
-      wrapper.style.transform = `translate(${cardX}px, ${cardY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    }
-
-    // Background blobs move very slowly
-    if (blobPurple) blobPurple.style.transform = `translate(${mouseX * 40}px, ${mouseY * 40}px)`;
-    if (blobBlue) blobBlue.style.transform = `translate(${mouseX * -50}px, ${mouseY * -50}px)`;
-    if (blobCoral) blobCoral.style.transform = `translate(-50%, -50%) translate(${mouseX * 20}px, ${mouseY * 20}px)`;
-
-    // Cat Eye Tracking
-    // We calculate vectors from the eyes group default position to the mouse cursor
-    // SVG coordinates center around 280, 240
     if (eyesGroup && wrapper) {
       const cardRect = wrapper.getBoundingClientRect();
-      // Center of cat's head in screen pixels
-      const headX = cardRect.left + (cardRect.width * (280 / 600));
-      const headY = cardRect.top + (cardRect.height * (236 / 600));
+      
+      // Center of cat's head in screen pixels (cx=300, cy=240 in SVG coordinate space)
+      const headX = cardRect.left + (cardRect.width * (300 / 600));
+      const headY = cardRect.top + (cardRect.height * (240 / 600));
 
       const dx = clientX - headX;
       const dy = clientY - headY;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      // Max eye translation: 5px in SVG space
+      // Max eye group translation (5px inside the SVG boundary)
       const maxTranslate = 5;
       let tx = 0;
       let ty = 0;
 
       if (distance > 0) {
-        // Shift eyes toward the mouse cursor proportionally
-        const ratio = Math.min(distance / 200, 1) * maxTranslate;
+        // Shift eyes group toward cursor position proportionally
+        const ratio = Math.min(distance / 180, 1) * maxTranslate;
         tx = (dx / distance) * ratio;
         ty = (dy / distance) * ratio;
       }
 
-      // Apply transform to eyes group
       eyesGroup.style.transform = `translate(${tx}px, ${ty}px)`;
     }
   });
 
-  // Reset positions when mouse leaves the viewport
+  // Smoothly center the eyes when cursor leaves viewport
   document.addEventListener('mouseleave', () => {
-    if (title) title.style.transform = 'translate(-50%, -60%)';
-    if (wrapper) wrapper.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg)';
-    if (eyesGroup) eyesGroup.style.transform = 'translate(0px, 0px)';
+    if (eyesGroup) {
+      eyesGroup.style.transform = 'translate(0px, 0px)';
+    }
   });
 
   /* ==========================================================================
-     2. brand HOVER GLOW CONNECTION
-     ========================================================================== */
-  if (wrapper && title) {
-    wrapper.addEventListener('mouseenter', () => {
-      title.classList.add('glowing');
-    });
-
-    wrapper.addEventListener('mouseleave', () => {
-      title.classList.remove('glowing');
-    });
-  }
-
-  /* ==========================================================================
-     3. INTERACTIVE CLICK MEOWS
+     2. INTERACTIVE CLICK MEOWS & CUTE WINKS
      ========================================================================== */
   if (wrapper) {
-    wrapper.addEventListener('click', (e) => {
-      // Pick random cute word
+    wrapper.addEventListener('click', () => {
+      // Pick a random cozy word
       const randomIndex = Math.floor(Math.random() * catExpressions.length);
       const chosenWord = catExpressions[randomIndex];
 
-      // Update and show bubble
+      // Render and display bubble
       showSpeechBubble(chosenWord);
 
-      // Cute animation trigger: make the cat's eyes shiver/widen on click
+      // Trigger a cute double-wink animation in JavaScript
       triggerEyeWink();
     });
   }
@@ -144,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bubble.classList.add('active');
     isBubbleActive = true;
 
-    // Auto dismiss after 1.5 seconds
+    // Fade out after 1.5 seconds
     bubbleTimeout = setTimeout(() => {
       bubble.classList.remove('active');
       isBubbleActive = false;
@@ -153,18 +102,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function triggerEyeWink() {
     if (eyeLeft && eyeRight) {
-      // Temporarily add class for a cute wink or scale
-      eyeLeft.style.transition = 'transform 0.1s ease';
-      eyeRight.style.transition = 'transform 0.1s ease';
+      // Disable default transitions temporarily for instant response
+      eyeLeft.style.transition = 'transform 0.08s ease';
+      eyeRight.style.transition = 'transform 0.08s ease';
       
-      // Make them wink!
+      // Make eyes close
       eyeLeft.style.transform = 'scaleY(0.1)';
+      eyeRight.style.transform = 'scaleY(0.1)';
       
       setTimeout(() => {
+        // Return to normal
         eyeLeft.style.transform = 'scaleY(1)';
-        eyeLeft.style.transition = '';
-        eyeRight.style.transition = '';
-      }, 200);
+        eyeRight.style.transform = 'scaleY(1)';
+        
+        setTimeout(() => {
+          eyeLeft.style.transition = '';
+          eyeRight.style.transition = '';
+        }, 100);
+      }, 150);
     }
   }
 });
