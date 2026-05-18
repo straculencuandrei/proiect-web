@@ -12,14 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
     'burenyuu~',
     'nyan!',
     'doridoridori~',
-    'prr?', 
-    'purr...', 
-    'meow! ♥', 
-    'mew!', 
+    'prr?',
+    'purr...',
+    'meow! ♥',
+    'mew!',
     '😺',
     'shhh!',
     'bounce!',
-    'play~'
+    'play~',
+    'kys',
+    'die nigga',
+    'i luv u'
   ];
 
   let isBubbleActive = false;
