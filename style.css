@@ -1,15 +1,15 @@
 /* ==========================================================================
-   MINIMALIST MATTE BLACK DESIGN FOR WALLIEZ
+   MINIMALIST VIEWPORT BOUNCING STYLE SHEET
    ========================================================================== */
 
-/* Variables */
 :root {
   --bg-matte-black: #000000;
   --text-white: #ffffff;
   --font-brand: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-ball: #ff6b6b;
 }
 
-/* Base Reset */
+/* Base resets */
 * {
   margin: 0;
   padding: 0;
@@ -24,31 +24,25 @@ body {
   min-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* Centered Layout Wrapper */
+/* Full Viewport Container */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  position: relative;
+  width: 100vw;
   height: 100vh;
+  background-color: var(--bg-matte-black);
+  overflow: hidden;
 }
 
-/* Borderless and Transparent SVG Container */
-.animation-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  max-width: 440px;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+/* Dynamic Left Positioned Cat Container */
+.cat-container {
+  position: absolute;
+  left: 8vw;
+  bottom: 12vh;
+  width: 320px;
+  height: 320px;
+  z-index: 10;
 }
 
 .cat-svg {
@@ -57,37 +51,61 @@ body {
   overflow: visible;
 }
 
-/* ==========================================================================
-   MINIMALIST COMPOSITOR ANIMATIONS (Breathing & Blinking)
-   ========================================================================== */
-
-/* Very quiet cozy breathing cycle */
-#cat-loaf {
-  transform-origin: 300px 420px;
-  animation: loafBreathe 4.5s ease-in-out infinite alternate;
+/* Glowing Playful Vector Ball */
+.toy-ball {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  z-index: 20;
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 10px rgba(255, 107, 107, 0.45));
 }
 
-@keyframes loafBreathe {
+/* ==========================================================================
+   ORGANIC SILHOUETTE KEYFRAMES (Twitches & Breathing)
+   ========================================================================== */
+
+/* Very subtle breathing cycle for the profile silhouette body */
+#cat-profile-group {
+  transform-origin: 170px 355px;
+  animation: profileBreathe 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes profileBreathe {
   0% {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.008) translateY(-1px);
+    transform: scale(1.006) translateY(-1px) skewX(0.2deg);
   }
 }
 
-/* Simple periodic eye blink cycle */
-.cat-eye {
-  transform-origin: 300px 242px;
-  animation: eyeBlink 5.5s ease-in-out infinite;
+/* Highly realistic organic cat tail-tip twitching */
+#cat-tail {
+  transform-origin: 100px 340px;
+  animation: tailTwitch 7s ease-in-out infinite;
 }
 
-@keyframes eyeBlink {
-  0%, 94%, 100% {
-    transform: scaleY(1);
+@keyframes tailTwitch {
+  0%, 65%, 100% {
+    transform: rotate(0deg);
   }
-  97% {
-    transform: scaleY(0.15);
+  69% {
+    /* Gentle flick upward */
+    transform: rotate(-3.5deg) skewY(-1deg);
+  }
+  73% {
+    /* Tiny flick down */
+    transform: rotate(1.5deg) skewY(0.5deg);
+  }
+  77% {
+    /* Wiggle left */
+    transform: rotate(-2.5deg) skewX(-0.5deg);
+  }
+  81% {
+    /* Smooth recovery */
+    transform: rotate(1deg);
   }
 }
 
@@ -96,20 +114,20 @@ body {
    ========================================================================== */
 .speech-bubble {
   position: absolute;
-  top: 18%;
-  left: 60%;
+  top: 10%;
+  left: 55%;
   background: #ffffff;
   color: #000000;
-  padding: 0.5rem 0.8rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 16px 16px 16px 0px;
   font-weight: 600;
-  font-size: 0.85rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  font-size: 0.82rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   opacity: 0;
   transform: scale(0.8) translateY(5px);
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
-  z-index: 10;
+  z-index: 30;
 }
 
 .speech-bubble.active {
@@ -118,16 +136,23 @@ body {
 }
 
 /* ==========================================================================
-   MOBILE RESPONSIVENESS
+   RESPONSIVE DESIGN Anchor scaling
    ========================================================================== */
-@media (max-width: 480px) {
-  .animation-wrapper {
-    max-width: 340px;
+@media (max-width: 768px) {
+  .cat-container {
+    left: 4vw;
+    bottom: 15vh;
+    width: 240px;
+    height: 240px;
+  }
+  .toy-ball {
+    width: 20px;
+    height: 20px;
   }
   .speech-bubble {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.7rem;
-    top: 20%;
-    left: 58%;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    top: 12%;
+    left: 52%;
   }
 }
