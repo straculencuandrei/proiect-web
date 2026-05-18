@@ -18,8 +18,57 @@
 <body>
 
   <!-- Full-screen matrix background -->
-  <div class="background-wrapper">
+  <div class="background-wrapper" id="background-wrapper">
     <div class="ambient-glow"></div>
+    <div class="lightning-overlay"></div>
+    
+    <!-- Scalable Forest SVG layers at the bottom -->
+    <svg class="forest-background" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <defs>
+        <!-- Reusable Symmetrical Pine Tree Silhouette -->
+        <g id="pine-tree">
+          <path d="M 0 -110 
+                   L 15 -80 L 6 -80 
+                   L 25 -50 L 12 -50 
+                   L 35 -15 L 18 -15 
+                   L 45 30 L -45 30 
+                   L -18 -15 L -35 -15 
+                   L -12 -50 L -25 -50 
+                   L -6 -80 L -15 -80 Z" />
+        </g>
+      </defs>
+      
+      <!-- Far Forest Layer (Purple tinted, illuminated on lightning flashes) -->
+      <g class="forest-far">
+        <use href="#pine-tree" x="80" y="240" transform="scale(1.2)" />
+        <use href="#pine-tree" x="220" y="250" transform="scale(1)" />
+        <use href="#pine-tree" x="360" y="230" transform="scale(1.3)" />
+        <use href="#pine-tree" x="500" y="260" transform="scale(0.9)" />
+        <use href="#pine-tree" x="640" y="240" transform="scale(1.15)" />
+        <use href="#pine-tree" x="780" y="250" transform="scale(1)" />
+        <use href="#pine-tree" x="920" y="220" transform="scale(1.4)" />
+        <use href="#pine-tree" x="1060" y="260" transform="scale(0.95)" />
+        <use href="#pine-tree" x="1200" y="240" transform="scale(1.2)" />
+        <use href="#pine-tree" x="1340" y="250" transform="scale(1.1)" />
+        <rect x="0" y="255" width="1440" height="70" />
+      </g>
+      
+      <!-- Near Forest Layer (Deep solid black, partially illuminated by flashes) -->
+      <g class="forest-near">
+        <use href="#pine-tree" x="40" y="270" transform="scale(0.9)" />
+        <use href="#pine-tree" x="150" y="260" transform="scale(1.1)" />
+        <use href="#pine-tree" x="290" y="280" transform="scale(0.85)" />
+        <use href="#pine-tree" x="420" y="265" transform="scale(1)" />
+        <use href="#pine-tree" x="580" y="270" transform="scale(0.95)" />
+        <use href="#pine-tree" x="710" y="255" transform="scale(1.15)" />
+        <use href="#pine-tree" x="850" y="275" transform="scale(0.8)" />
+        <use href="#pine-tree" x="980" y="260" transform="scale(1.05)" />
+        <use href="#pine-tree" x="1120" y="270" transform="scale(0.9)" />
+        <use href="#pine-tree" x="1270" y="255" transform="scale(1.1)" />
+        <use href="#pine-tree" x="1390" y="275" transform="scale(0.85)" />
+        <rect x="0" y="280" width="1440" height="45" />
+      </g>
+    </svg>
   </div>
 
   <!-- Main Container -->
@@ -40,7 +89,6 @@
 
         <div class="name-section">
           <h1 class="profile-name">walliez</h1>
-          <!-- Guns.lol Badge list -->
           <div class="badge-list">
             <!-- Blue Verified Badge -->
             <div class="badge-item" title="Verified Account">
@@ -126,7 +174,6 @@
       <!-- Interactive Music Toggler (Bottom) -->
       <div class="music-player" id="music-player">
         <div class="player-left">
-          <!-- Play icon / Vinyl disc rotating -->
           <div class="vinyl-wrapper" id="vinyl-disc">
             <div class="vinyl-center"></div>
           </div>
@@ -136,7 +183,6 @@
           </div>
         </div>
         
-        <!-- Live Wave Visualizer (CSS bars dancing) -->
         <div class="wave-visualizer" id="wave-vis">
           <div class="bar"></div>
           <div class="bar"></div>
@@ -147,7 +193,7 @@
 
     </div>
 
-    <!-- Hidden dynamic interactive popup (for Discord copy info) -->
+    <!-- Hidden dynamic interactive popup -->
     <div class="toast-popup" id="toast-popup">
       <span>Copied! Discord tag copied to clipboard.</span>
     </div>

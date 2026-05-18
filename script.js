@@ -89,4 +89,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ==========================================================================
+     3. ATMOSPHERIC SEAMLESS RAIN GENERATOR
+     ========================================================================== */
+  function createRain() {
+    const background = document.getElementById('background-wrapper');
+    if (!background) return;
+
+    const dropCount = 70; // Dense, cozy rain density
+
+    for (let i = 0; i < dropCount; i++) {
+      const drop = document.createElement('div');
+      drop.className = 'rain-drop';
+
+      // Randomize horizontal positions, fall speeds, sizes, and opacities for depth
+      const leftPos = Math.random() * 115 - 10;      // Compensates for the wind slant angle
+      const fallDuration = 0.5 + Math.random() * 0.55; // Velocity
+      const fallDelay = Math.random() * 2;            // Staggered delay
+      const dropOpacity = 0.08 + Math.random() * 0.22; // Foreground is brighter
+      const dropScale = 0.35 + Math.random() * 0.65;   // Foreground is larger/longer
+
+      drop.style.left = `${leftPos}vw`;
+      drop.style.animationDuration = `${fallDuration}s`;
+      drop.style.animationDelay = `-${fallDelay}s`; // Negative delay starts drops mid-fall instantly
+      drop.style.opacity = dropOpacity;
+      drop.style.transform = `scale(${dropScale})`;
+
+      background.appendChild(drop);
+    }
+  }
+
+  // Initiate rainstorm fall
+  createRain();
+
 });
