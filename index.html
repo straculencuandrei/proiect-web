@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>walliez</title>
-  <meta name="description" content="A minimalist space featuring a realistic profile cat silhouette playing with a bouncing ball.">
+  <meta name="description" content="A minimalist matte black page featuring interactive Neco-Arc.">
   <meta name="author" content="walliez">
 
   <!-- Google Fonts: Outfit for clean typography -->
@@ -16,96 +16,16 @@
 </head>
 <body>
 
-  <!-- Full screen container for the minimalist bouncing scene -->
-  <main class="container" id="interactive-container">
+  <!-- Center layout container for Neco-Arc -->
+  <main class="container">
 
-    <!-- The Realistic Profile Cat Silhouette on the left -->
-    <div class="cat-container" id="cat-container">
-      <svg class="cat-svg" viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Soft, organic shadow for the cat shape -->
-          <filter id="cat-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="-6" dy="14" stdDeviation="10" flood-color="#000000" flood-opacity="0.65" />
-          </filter>
-
-          <!-- Off-white to silver profile gradient -->
-          <linearGradient id="profile-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fafafa" />
-            <stop offset="100%" stop-color="#eaeaea" />
-          </linearGradient>
-        </defs>
-
-        <!-- Dynamic floor shadow matching the cat bottom -->
-        <ellipse cx="170" cy="355" rx="85" ry="10" fill="rgba(255, 255, 255, 0.02)" />
-
-        <g id="cat-profile-group" filter="url(#cat-shadow)">
-          <!-- Curl Tail behind rump -->
-          <path id="cat-tail" d="M 100 340 C 60 350, 30 320, 45 270 C 60 220, 20 180, 30 140" 
-                fill="none" stroke="url(#profile-grad)" stroke-width="12" stroke-linecap="round" />
-
-          <!-- Folded Hind Leg/Thigh Silhouette -->
-          <path d="M 100 350 C 95 310, 125 280, 150 280 C 170 280, 180 310, 175 350 Z" fill="url(#profile-grad)" opacity="0.95" />
-          <ellipse cx="140" cy="354" rx="20" ry="7" fill="url(#profile-grad)" />
-
-          <!-- Unified Body Silhouette (Rump, Back, Neck, Head, Muzzle, Belly, Steady Leg) -->
-          <path d="
-            M 110,350 
-            C 95,330 95,250 120,210 
-            C 145,170 170,165 180,130 
-            C 183,115 178,105 185,90 
-            C 192,75 208,70 215,85 
-            C 220,95 215,105 225,115 
-            C 232,122 245,125 240,135 
-            C 235,145 222,142 215,155
-            C 205,175 200,210 205,250
-            C 210,290 215,320 215,355
-            C 215,360 200,360 195,360
-            C 185,360 185,340 185,280
-            C 185,250 175,230 160,230
-            C 145,230 120,290 120,350
-            Z" 
-            fill="url(#profile-grad)" />
-
-          <!-- Foreside Right Ear -->
-          <path d="M 192 88 L 180 62 L 202 75 Z" fill="url(#profile-grad)" />
-          
-          <!-- Backside Left Ear -->
-          <path d="M 205 84 L 202 58 L 216 72 Z" fill="#b5b5ba" />
-
-          <!-- Active Batting Front Paw (Side Profile) -->
-          <g id="cat-paw-active">
-            <!-- Sleek jointed leg reaching down to floor -->
-            <path d="M 185 190 Q 210 230 205 352" fill="none" stroke="url(#profile-grad)" stroke-width="16" stroke-linecap="round" />
-            <circle cx="205" cy="352" r="8.5" fill="url(#profile-grad)" />
-          </g>
-        </g>
-      </svg>
+    <!-- Interactive Neco-Arc Image and Speech Bubble -->
+    <div class="neco-container" id="neco-container">
+      <img src="neco_arc.png" alt="Neco-Arc" class="neco-image" id="neco-image">
       
-      <!-- Minimal Speech Bubble (aligned with cat's head coordinate) -->
       <div class="speech-bubble" id="speech-bubble">
-        <span>prr?</span>
+        <span>burenyuu~</span>
       </div>
-    </div>
-
-    <!-- The Playful Yarn Toy Ball -->
-    <div class="toy-ball" id="toy-ball">
-      <svg viewBox="0 0 32 32" width="100%" height="100%">
-        <defs>
-          <radialGradient id="ball-grad-glow" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stop-color="#ff9a8b" />
-            <stop offset="60%" stop-color="#ff6b6b" />
-            <stop offset="100%" stop-color="#d63031" />
-          </radialGradient>
-        </defs>
-        <!-- Yarn Sphere -->
-        <circle cx="16" cy="16" r="15" fill="url(#ball-grad-glow)" />
-        <!-- Yarn Textures -->
-        <path d="M 6 12 Q 16 6 26 12" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" />
-        <path d="M 4 18 Q 16 26 28 18" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" />
-        <path d="M 12 4 Q 20 16 12 28" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" />
-        <!-- Loose thread end -->
-        <path d="M 27 20 Q 30 24 33 22" fill="none" stroke="#ff6b6b" stroke-width="2.5" stroke-linecap="round" />
-      </svg>
     </div>
 
   </main>
