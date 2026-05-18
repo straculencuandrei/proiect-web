@@ -75,28 +75,24 @@ body {
   opacity: 0;
   pointer-events: none;
   z-index: 0;
-  animation: lightningFlash 13s infinite;
+  /* Extremely fast transition for realistic flickering */
+  transition: opacity 0.04s ease-out;
 }
 
-@keyframes lightningFlash {
-  0%, 90%, 95%, 100% {
-    opacity: 0;
-  }
-  91% {
-    opacity: 0.85;
-  }
-  91.6% {
-    opacity: 0.2;
-  }
-  92.2% {
-    opacity: 0.95;
-  }
-  93% {
-    opacity: 0.05;
-  }
-  93.8% {
-    opacity: 0.45;
-  }
+body.is-striking .lightning-overlay {
+  opacity: 1;
+}
+
+/* Canvas styling for high-speed generated branching bolts */
+.lightning-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 /* Semi-transparent drifting clouds to overlay and blur lightning */
@@ -146,31 +142,21 @@ body {
 
 .forest-far {
   fill: #06050b;
-  animation: forestFarStrike 13s infinite;
+  transition: all 0.05s ease-out;
+}
+
+body.is-striking .forest-far {
+  fill: #22153c; /* Illuminated silhouette highlights */
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.25));
 }
 
 .forest-near {
   fill: #020103;
-  animation: forestNearStrike 13s infinite;
+  transition: all 0.05s ease-out;
 }
 
-@keyframes forestFarStrike {
-  0%, 90%, 95%, 100% {
-    fill: #06050b;
-  }
-  91%, 92.2%, 93.8% {
-    fill: #22153c; /* Illuminated silhouette highlights */
-    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.25));
-  }
-}
-
-@keyframes forestNearStrike {
-  0%, 90%, 95%, 100% {
-    fill: #020103;
-  }
-  91%, 92.2%, 93.8% {
-    fill: #0d071a; /* Subtle front landscape flash outline */
-  }
+body.is-striking .forest-near {
+  fill: #0d071a; /* Subtle front landscape flash outline */
 }
 
 /* Seamless rain particle elements */
@@ -216,17 +202,12 @@ body {
   background: linear-gradient(180deg, #ffffff 28%, #a2a2a2 50%, #ffffff 68%, #555555 85%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
-  animation: chromeLightning 13s infinite;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45)) brightness(1);
+  transition: all 0.05s ease-out;
 }
 
-@keyframes chromeLightning {
-  0%, 90%, 95%, 100% {
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45)) brightness(1);
-  }
-  91%, 92.2%, 93.8% {
-    filter: drop-shadow(0 0 10px rgba(230, 240, 255, 0.75)) brightness(1.65);
-  }
+body.is-striking .profile-name {
+  filter: drop-shadow(0 0 10px rgba(230, 240, 255, 0.75)) brightness(1.65);
 }
 
 .profile-card {
