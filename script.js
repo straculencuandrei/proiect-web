@@ -252,4 +252,52 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleNextLightning();
   }
 
+  /* ==========================================================================
+     5. HIGH-QUALITY GLOWING STARFIELD
+     ========================================================================== */
+  function createStars() {
+    const container = document.getElementById('stars-container');
+    if (!container) return;
+
+    const starCount = 45; // Low quantity, high quality scattering
+    const stars = [];
+
+    // Generate DOM particles
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      
+      const size = 1.2 + Math.random() * 1.8; // 1.2px to 3px perfectly sharp DOM elements
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      
+      // Keep stars mostly in the upper 65% of screen
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.top = `${Math.random() * 65}vh`; 
+      
+      // Base depth blur
+      star.style.filter = `blur(${Math.random() * 1.2}px)`;
+
+      container.appendChild(star);
+      stars.push(star);
+    }
+
+    // Random glow event loop
+    setInterval(() => {
+      // Pick 1 to 2 random stars to glow intensely
+      const glowCount = Math.floor(Math.random() * 2) + 1;
+      for (let i = 0; i < glowCount; i++) {
+        const randomStar = stars[Math.floor(Math.random() * stars.length)];
+        randomStar.classList.add('glowing');
+        
+        // Remove glow after random decay time (1s to 3s)
+        setTimeout(() => {
+          randomStar.classList.remove('glowing');
+        }, 1000 + Math.random() * 2000);
+      }
+    }, 600); // Trigger a glow event frequently
+  }
+  
+  createStars();
+
 });
