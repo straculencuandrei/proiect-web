@@ -3,203 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>walliez</title>
-  <meta name="description" content="walliez link-in-bio profile. developer & designer.">
-  <meta name="author" content="walliez">
-
-  <!-- Google Fonts: Outfit and Fira Code for premium bio aesthetics -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="icon" type="image/png" href="favicon.png">
+  <title>PERSONAL WALLIEZ</title>
+  <meta name="description" content="Personal portfolio and projects.">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Full-screen matrix background -->
-  <div class="background-wrapper" id="background-wrapper">
-    <div class="ambient-glow"></div>
-    <div class="lightning-overlay"></div>
-    <canvas id="lightning-canvas" class="lightning-canvas"></canvas>
-    <div class="cloud-bg cloud-1"></div>
-    <div class="cloud-bg cloud-2"></div>
-    <div id="stars-container" class="stars-container"></div>
-    
-    <!-- Scalable Forest SVG layers at the bottom -->
-    <svg class="forest-background" viewBox="0 0 1440 320" preserveAspectRatio="none">
-      <defs>
-        <!-- Reusable Symmetrical Pine Tree Silhouette -->
-        <g id="pine-tree">
-          <path d="M 0 -110 
-                   L 15 -80 L 6 -80 
-                   L 25 -50 L 12 -50 
-                   L 35 -15 L 18 -15 
-                   L 45 30 L -45 30 
-                   L -18 -15 L -35 -15 
-                   L -12 -50 L -25 -50 
-                   L -6 -80 L -15 -80 Z" />
-        </g>
-      </defs>
-      
-      <!-- Far Forest Layer (Purple tinted, illuminated on lightning flashes) -->
-      <g class="forest-far">
-        <g class="wind-tree w1"><use href="#pine-tree" x="80" y="240" transform="scale(1.2)" /></g>
-        <g class="wind-tree w2"><use href="#pine-tree" x="220" y="250" transform="scale(1)" /></g>
-        <g class="wind-tree w3"><use href="#pine-tree" x="360" y="230" transform="scale(1.3)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="500" y="260" transform="scale(0.9)" /></g>
-        <g class="wind-tree w2"><use href="#pine-tree" x="640" y="240" transform="scale(1.15)" /></g>
-        <g class="wind-tree w3"><use href="#pine-tree" x="780" y="250" transform="scale(1)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="920" y="220" transform="scale(1.4)" /></g>
-        <g class="wind-tree w2"><use href="#pine-tree" x="1060" y="260" transform="scale(0.95)" /></g>
-        <g class="wind-tree w3"><use href="#pine-tree" x="1200" y="240" transform="scale(1.2)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="1340" y="250" transform="scale(1.1)" /></g>
-        <rect x="0" y="255" width="1440" height="70" />
-      </g>
-      
-      <!-- Near Forest Layer (Deep solid black, partially illuminated by flashes) -->
-      <g class="forest-near">
-        <g class="wind-tree w3"><use href="#pine-tree" x="40" y="270" transform="scale(0.9)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="150" y="260" transform="scale(1.1)" /></g>
-        <g class="wind-tree w2"><use href="#pine-tree" x="290" y="280" transform="scale(0.85)" /></g>
-        <g class="wind-tree w3"><use href="#pine-tree" x="420" y="265" transform="scale(1)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="580" y="270" transform="scale(0.95)" /></g>
-        <g class="wind-tree w2"><use href="#pine-tree" x="710" y="255" transform="scale(1.15)" /></g>
-        <g class="wind-tree w3"><use href="#pine-tree" x="850" y="275" transform="scale(0.8)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="980" y="260" transform="scale(1.05)" /></g>
-        <g class="wind-tree w2"><use href="#pine-tree" x="1120" y="270" transform="scale(0.9)" /></g>
-        <g class="wind-tree w3"><use href="#pine-tree" x="1270" y="255" transform="scale(1.1)" /></g>
-        <g class="wind-tree w1"><use href="#pine-tree" x="1390" y="275" transform="scale(0.85)" /></g>
-        <rect x="0" y="280" width="1440" height="45" />
-      </g>
-    </svg>
+  <!-- Scrolling header text -->
+  <div class="header-scroll">
+    MY BABY, SHE RAN AWAY // BUT FIRST SHE TRIED TO GET ME COMMITTED // NOT GOING TO THE HOSPITAL, 'CAUSE I AM NOT SICK //
   </div>
 
-  <!-- Main Container -->
-  <main class="container">
-
-    <!-- Profile Card (Glassmorphic) -->
-    <div class="profile-card">
-
-      <!-- Header Section (Avatar, Name, Badges) -->
-      <div class="card-header">
-        <div class="avatar-wrapper">
-          <img src="favicon.png" alt="walliez" class="avatar">
-          <div class="avatar-ring"></div>
-        </div>
-
-        <div class="name-section">
-          <h1 class="profile-name">walliez</h1>
-          <div class="badge-list">
-            <!-- Blue Verified Badge -->
-            <div class="badge-item" title="Verified Account">
-              <svg class="badge-icon verified" viewBox="0 0 24 24" fill="#38bdf8">
-                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </div>
-            <!-- Developer Badge -->
-            <div class="badge-item" title="Developer">
-              <svg class="badge-icon dev" viewBox="0 0 24 24" fill="#a855f7">
-                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <p class="profile-tag">@walliez</p>
+  <!-- Main header -->
+  <header class="header">
+    <div class="header-content">
+      <h1>PERSONAL WALLIEZ</h1>
+      <div class="header-info">
+        <div class="visitor-count">You're visitor no. <span id="visitor-count">1337</span></div>
+        <button class="theme-toggle" id="theme-toggle">THEME: DARK</button>
       </div>
-
-      <!-- Bio Monospace Typing Segment -->
-      <div class="card-bio">
-        <p class="bio-text">developer & designer. building cool things in the shadows.</p>
-        <div class="bio-detail">
-          <span class="bio-stat">⚡ coding in js & css</span>
-          <span class="bio-divider">•</span>
-          <span class="bio-stat">📍 shadows</span>
-        </div>
-      </div>
-
-      <!-- Divider line -->
-      <hr class="card-divider">
-
-      <!-- Socials / Links Section -->
-      <div class="links-section">
-        
-        <!-- Discord Card -->
-        <div class="link-card discord" id="discord-btn">
-          <div class="link-left">
-            <svg class="link-icon" viewBox="0 0 127.14 96.36" fill="currentColor">
-              <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,52.8,6.83,77.19,77.19,0,0,0,49.5,0,105.15,105.15,0,0,0,19.06,8.07C-3.79,42.06-1,75.22,14.14,95.54a106,106,0,0,0,31.84,16.07,79.52,79.52,0,0,0,6.72-10.93,68.79,68.79,0,0,1-10.63-5.11c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,85,0c.85.69,1.74,1.37,2.65,2a68.42,68.42,0,0,1-10.63,5.11,79.52,79.52,0,0,0,6.72,10.93,106,106,0,0,0,31.84-16.07C129.47,75.22,132.32,42.06,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
-            </svg>
-            <div class="link-texts">
-              <span class="link-title">Discord</span>
-              <span class="link-subtitle">@walliez</span>
-            </div>
-          </div>
-          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-
-        <!-- GitHub Link -->
-        <a href="https://github.com/straculencuandrei" target="_blank" class="link-card github">
-          <div class="link-left">
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-            </svg>
-            <div class="link-texts">
-              <span class="link-title">GitHub</span>
-              <span class="link-subtitle">straculencuandrei</span>
-            </div>
-          </div>
-          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-
-        <!-- Steam Link -->
-        <div class="link-card steam" id="steam-btn">
-          <div class="link-left">
-            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2a10 10 0 0 0-7.88 16.17l3.77-2.17a3.25 3.25 0 0 1 5.75-2.48l2.67-3.8A3.25 3.25 0 1 1 12 2zm1 7.25a2.25 2.25 0 1 0 2.25 2.25A2.25 2.25 0 0 0 13 9.25z"/>
-            </svg>
-            <div class="link-texts">
-              <span class="link-title">Steam</span>
-              <span class="link-subtitle">walliez</span>
-            </div>
-          </div>
-          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-
-      </div>
-
-      <!-- Divider line -->
-      <hr class="card-divider">
-
-      <!-- Interactive Music Toggler (Bottom) -->
-      <div class="music-player" id="music-player">
-        <div class="player-left">
-          <div class="vinyl-wrapper" id="vinyl-disc">
-            <div class="vinyl-center"></div>
-          </div>
-          <div class="track-details">
-            <span class="track-title" id="track-title">Silent Lofi Night</span>
-            <span class="track-author">walliez ambient</span>
-          </div>
-        </div>
-        
-        <div class="wave-visualizer" id="wave-vis">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      </div>
-
     </div>
+  </header>
 
-    <!-- Hidden dynamic interactive popup -->
-    <div class="toast-popup" id="toast-popup">
-      <span>Copied! Discord tag copied to clipboard.</span>
-    </div>
+  <!-- Social navigation -->
+  <nav class="social-nav">
+    <a href="https://github.com/straculencuandrei" title="GitHub">GITHUB</a>
+    <a href="mailto:contact@example.com" title="Email">E-MAIL</a>
+    <a href="#" title="Instagram">INSTAGRAM</a>
+    <a href="#" title="Twitter">TWITTER</a>
+  </nav>
 
-  </main>
+  <!-- Main layout container -->
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Scripture Section -->
+      <section class="sidebar-section">
+        <h3 class="section-title">SCRIPTURE</h3>
+        <div class="scripture-content">
+          <p><strong>"For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast."</strong></p>
+          <p><em>Ephesians 2:8-9</em></p>
+        </div>
+      </section>
+
+      <!-- Last Played Song Section -->
+      <section class="sidebar-section">
+        <h3 class="section-title">LAST PLAYED SONG</h3>
+        <div class="song-content">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23333' width='100' height='100'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' fill='%23666' font-family='monospace'%3E[Album Art]%3C/text%3E%3C/svg%3E" alt="Album Art" class="album-art">
+          <p><strong>Loading...</strong></p>
+          <p>Last.FM integration coming soon</p>
+        </div>
+      </section>
+
+      <!-- Chatbox Section -->
+      <section class="sidebar-section">
+        <h3 class="section-title">CHATBOX</h3>
+        <div class="chatbox-messages">
+          <div class="message">
+            <div class="message-header"><span class="message-name">visitor</span> <span class="message-time">just now</span></div>
+            <div class="message-text">Add your thoughts here!</div>
+          </div>
+          <div class="message">
+            <div class="message-header"><span class="message-name">friend</span> <span class="message-time">1d ago</span></div>
+            <div class="message-text">Nice site design!</div>
+          </div>
+        </div>
+        <form class="chatbox-form" id="chatbox-form">
+          <input type="text" placeholder="Name *" required>
+          <input type="email" placeholder="Email/Website">
+          <input type="url" placeholder="Avatar URL">
+          <textarea placeholder="Message *" required></textarea>
+          <button type="submit">SEND</button>
+        </form>
+      </section>
+
+      <!-- Projects Featured Section -->
+      <section class="sidebar-section">
+        <h3 class="section-title">FEATURED</h3>
+        <div class="featured-content">
+          <div class="featured-item">
+            <h4>GitHub Repos</h4>
+            <p>Check out my projects on GitHub</p>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Main content area -->
+    <main class="main-content">
+      <section class="content-section">
+        <h2>PROJECTS</h2>
+        
+        <div class="project">
+          <div class="project-header">
+            <h3>PROJECT 1</h3>
+            <span class="project-status">[LIVE]</span>
+          </div>
+          <p>Describe your first project here. Add details about what it does and the technologies used.</p>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
+            <h3>PROJECT 2</h3>
+            <span class="project-status">[LIVE]</span>
+          </div>
+          <p>Describe your second project here. Share the story behind it.</p>
+        </div>
+
+        <div class="project">
+          <div class="project-header">
+            <h3>PROJECT 3</h3>
+            <span class="project-status">[WIP]</span>
+          </div>
+          <p>Currently working on this project. More details coming soon.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>ABOUT</h2>
+        <p>Welcome to my personal website. This site is inspired by the minimalist, terminal aesthetic of the old web.</p>
+        <p>Here you'll find my projects, thoughts, and links to my other online profiles. Feel free to reach out!</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 Personal Walliez. Made with ❤️ and monospace fonts.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
