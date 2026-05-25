@@ -414,6 +414,25 @@ h2::before { content: '>' / ''; color: var(--accent); animation: blink 1s infini
     }
 }
 
+.project-title {
+    font-weight: 700;
+    color: var(--fg-bright);
+    font-size: 1.05em;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+    color: var(--card-accent, var(--accent));
+}
+
+.project-lang {
+    font-weight: 400;
+    color: var(--fg-dim);
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
 .card-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 150px; gap: 2rem; }
 
 details {
