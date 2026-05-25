@@ -337,6 +337,51 @@ aside { border-right: 1px solid var(--border); padding: 1.5rem; background: var(
     border: 2px solid var(--border);
 }
 
+/* CV Download Box Widget */
+.cv-download-box {
+    border: 1px dashed var(--border-mid);
+    padding: 8px 10px;
+    background: var(--bg-subtle);
+    transition: all 0.3s ease;
+}
+
+.cv-download-box:hover {
+    border-style: solid;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-dim);
+}
+
+.cv-download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--fg);
+    font-weight: bold;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.cv-download-btn:hover {
+    color: var(--accent);
+}
+
+.cv-icon {
+    color: var(--accent);
+}
+
+.cv-arrow {
+    display: inline-block;
+    animation: bounceVertical 1.5s infinite;
+}
+
+@keyframes bounceVertical {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+}
+
 main { padding: 0; }
 .section-block { padding: 2rem 1.5rem; border-bottom: 1px solid var(--border); }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; }
