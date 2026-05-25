@@ -45,68 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // ============================================================
-  // Chatbox Form Submission
+  // Chatbox Form Submission (REMOVED)
   // ============================================================
-  const chatboxForm = document.getElementById('chatbox-form');
-  if (chatboxForm) {
-    chatboxForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Get form values
-      const nameInput = chatboxForm.querySelector('input[type="text"]');
-      const emailInput = chatboxForm.querySelector('input[type="email"]');
-      const avatarInput = chatboxForm.querySelector('input[type="url"]');
-      const messageInput = chatboxForm.querySelector('textarea');
-      
-      if (!nameInput.value.trim() || !messageInput.value.trim()) {
-        alert('Please fill in required fields (Name and Message)');
-        return;
-      }
-      
-      // Create new message element
-      const messagesContainer = document.querySelector('.chatbox-messages');
-      const newMessage = document.createElement('div');
-      newMessage.className = 'message';
-      
-      const now = new Date();
-      const timeString = formatTime(now);
-      
-      newMessage.innerHTML = `
-        <div class="message-header">
-          <span class="message-name">${escapeHtml(nameInput.value)}</span>
-          <span class="message-time">${timeString}</span>
-        </div>
-        <div class="message-text">${escapeHtml(messageInput.value)}</div>
-      `;
-      
-      messagesContainer.appendChild(newMessage);
-      
-      // Store message in localStorage
-      const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-      messages.unshift({
-        name: nameInput.value,
-        email: emailInput.value,
-        avatar: avatarInput.value,
-        message: messageInput.value,
-        timestamp: now.toISOString()
-      });
-      
-      // Keep only last 20 messages
-      if (messages.length > 20) {
-        messages.pop();
-      }
-      localStorage.setItem('chatMessages', JSON.stringify(messages));
-      
-      // Clear form
-      chatboxForm.reset();
-      
-      // Show success message
-      alert('Message posted!');
-    });
-  }
-  
-  // Load messages on page load
-  loadChatMessages();
+  // Chatbox functionality removed - feature discontinued
+
   
   // ============================================================
   // Helper Functions
@@ -130,34 +72,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
-  }
-  
-  function loadChatMessages() {
-    const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-    const messagesContainer = document.querySelector('.chatbox-messages');
-    
-    if (!messagesContainer) return;
-    
-    // Remove demo messages and add stored ones
-    const demoMessages = messagesContainer.querySelectorAll('.message');
-    demoMessages.forEach(msg => msg.remove());
-    
-    messages.forEach(msg => {
-      const messageEl = document.createElement('div');
-      messageEl.className = 'message';
-      
-      const date = new Date(msg.timestamp);
-      const timeString = formatTime(date);
-      
-      messageEl.innerHTML = `
-        <div class="message-header">
-          <span class="message-name">${escapeHtml(msg.name)}</span>
-          <span class="message-time">${timeString}</span>
-        </div>
-        <div class="message-text">${escapeHtml(msg.message)}</div>
-      `;
-      
-      messagesContainer.appendChild(messageEl);
-    });
   }
 });
