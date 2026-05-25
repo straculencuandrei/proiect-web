@@ -473,9 +473,13 @@ h2::before { content: '>' / ''; color: var(--accent); animation: blink 1s infini
 
 .project-lang {
     font-weight: 400;
-    color: var(--fg-dim);
+    color: var(--fg-muted);
     font-size: 0.9em;
-    opacity: 0.85;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .project-lang {
+    color: var(--fg-bright);
 }
 
 .card-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 150px; gap: 2rem; }
