@@ -1,114 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PERSONAL WALLIEZ</title>
-  <meta name="description" content="Personal portfolio and projects.">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);else if(window.matchMedia('(prefers-color-scheme:light)').matches)document.documentElement.setAttribute('data-theme','light')})()</script>
+    <style>html{background:#000}[data-theme="light"]{background:#f0f0f0}</style>
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRACULENCU ANDREI</title>
 </head>
 <body>
-  <!-- Scrolling header text -->
-  <div class="header-scroll">
-    MY BABY, SHE RAN AWAY // BUT FIRST SHE TRIED TO GET ME COMMITTED // NOT GOING TO THE HOSPITAL, 'CAUSE I AM NOT SICK //
-  </div>
+    <div class="noise"></div>
+    <div class="frame">
+        <div class="marquee-wrap">
+            <div class="marquee-content">
+                ENGINEERING STUDENT // LOW-LEVEL PROGRAMMING // C++ // REVERSE ENGINEERING // CYBERSECURITY // SOFTWARE INTERNALS
+            </div>
+        </div>
 
-  <!-- Main header -->
-  <header class="header">
-    <div class="header-content">
-      <h1>PERSONAL WALLIEZ</h1>
-      <div class="header-info">
-        <div class="visitor-count">You're visitor no. <span id="visitor-count">1337</span></div>
-        <button class="theme-toggle" id="theme-toggle">THEME: DARK</button>
-      </div>
+        <header class="reveal-on-scroll">
+            <div>
+                <h1 id="glitchText" data-text="STRACULENCU.COM">STRACULENCU.COM</h1>
+                <div class="visitor-badge-wrap">
+                    <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle light/dark theme">THEME: DARK</button>
+                </div>
+            </div>
+        </header>
+
+        <nav aria-label="Social and identity links" class="reveal-on-scroll">
+            <a href="mailto:andrei.straculencu@yahoo.com" rel="me">E-Mail</a>
+            <a href="https://x.andrei-straculencu.workers.dev/" target="_blank" rel="noopener noreferrer me">Website</a>
+            <a href="https://github.com/straculencuandrei" target="_blank" rel="noopener noreferrer me">GitHub</a>
+            <a href="https://open.spotify.com/artist/5lnJx9rHFKGFYTpF0TFzmK" target="_blank" rel="noopener noreferrer me">Spotify</a>
+        </nav>
+
+        <div class="grid-layout">
+            <aside class="reveal-on-scroll">
+                <div class="widget">
+                    <span class="widget-title">ABOUT ME</span>
+                    <a id="link" href="#" class="verse-link">
+                        <strong>
+                            <p class="verse-text">I’m an Engineering Student with a genuine curiosity for how complex systems work under the hood. Right now, I’m focused on software development, specifically low-level programming and C++, with the ultimate goal of building a career centered around software internals, reverse engineering, and cybersecurity.</p>
+                        </strong>
+                    </a>
+                </div>
+
+                <div class="widget">
+                    <span class="widget-title">SKILLS</span>
+                    <div class="crypto-item">
+                        <button class="crypto-header" type="button">
+                            <span>HARD SKILLS</span>
+                            <span class="crypto-toggle">[+]</span>
+                        </button>
+                        <div class="crypto-content active">
+                            <p style="font-size: 0.75rem; color: var(--fg-muted);">• HTML / CSS (Advanced)<br>• C++ (Advanced)<br>• Microsoft Office<br>• Python (Intermediate)<br>• Java (Intermediate)<br>• Reverse engineering<br>• Assembly (x86/x64)<br>• JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="crypto-item">
+                        <button class="crypto-header" type="button">
+                            <span>SOFT SKILLS</span>
+                            <span class="crypto-toggle">[+]</span>
+                        </button>
+                        <div class="crypto-content">
+                            <p style="font-size: 0.75rem; color: var(--fg-muted);">• Problem-solving<br>• Analytical skills<br>• Teamwork</p>
+                        </div>
+                    </div>
+                    <div class="crypto-item">
+                        <button class="crypto-header" type="button">
+                            <span>LANGUAGES</span>
+                            <span class="crypto-toggle">[+]</span>
+                        </button>
+                        <div class="crypto-content">
+                            <p style="font-size: 0.75rem; color: var(--fg-muted);">• Romanian (Native)<br>• English (C1/B2)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget">
+                    <span class="widget-title">EDUCATION</span>
+                    <div class="crypto-item">
+                        <button class="crypto-header" type="button">
+                            <span>HIGH SCHOOL</span>
+                            <span class="crypto-toggle">[-]</span>
+                        </button>
+                        <div class="crypto-content active">
+                            <p style="font-size: 0.75rem; color: var(--fg-muted);">Colegiul Naţional "Nicolae Bălcescu" Brăila<br>Advanced Mathematics and Physics<br>2020 - 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main>
+                <section id="projects" class="section-block reveal-on-scroll">
+                    <div class="section-head">
+                        <h2>PROJECTS</h2>
+                        <span class="section-number">01</span>
+                    </div>
+
+                    <a href="https://github.com/straculencuandrei/coolSearch" target="_blank" class="project-card">
+                        <div class="card-header">
+                            <span>coolSearch</span>
+                            <span class="project-status">[ACTIVE]</span>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <p class="project-desc">coolSearch is designed for extreme speed. While traditional search tools crawl your folders one by one, coolSearch talks directly to your hard drive's "internal map" (the Master File Table) to find every single file on your computer in less than a second. It combines the raw power of Rust with a sleek, modern React interface to make finding files feel instant.</p>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+
+                <section id="music" class="section-block reveal-on-scroll">
+                    <div class="section-head">
+                        <h2>MUSIC PRODUCTION</h2>
+                        <span class="section-number">02</span>
+                    </div>
+                    <p style="margin-bottom: 1rem; color: var(--fg-muted); font-size: 0.85rem;">Active in the music production field since 2018, I have consistently developed my technical and creative skills in composing, mixing, and mastering. I possess an advanced command of FL Studio (DAW).</p>
+                    
+                    <details>
+                        <summary>Key Technical Competencies</summary>
+                        <div class="details-content">
+                            <p>• <b>Advanced VST Manipulation:</b> Deep understanding of signal processing, synthesis, and sound design using industry-standard plugins.<br>
+                            • <b>Mixing & Mastering:</b> Proficient in balancing frequency spectrums, dynamic range processing, and spatial enhancement to achieve professional-grade loudness and clarity.<br>
+                            • <b>Workflow Optimization:</b> Expertise in automation, MIDI routing, and creative sampling techniques within a digital environment.</p>
+                        </div>
+                    </details>
+                </section>
+            </main>
+        </div>
+
+        <footer class="reveal-on-scroll">
+            <p class="footer-text">
+                COPYLEFT STRACULENCU ANDREI 2026 | NO RIGHTS RESERVED
+            </p>
+        </footer>
     </div>
-  </header>
-
-  <!-- Social navigation -->
-  <nav class="social-nav">
-    <a href="https://github.com/straculencuandrei" title="GitHub">GITHUB</a>
-    <a href="mailto:contact@example.com" title="Email">E-MAIL</a>
-  </nav>
-
-  <!-- Main layout container -->
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <!-- Scripture Section -->
-      <section class="sidebar-section">
-        <h3 class="section-title">SCRIPTURE</h3>
-        <div class="scripture-content">
-          <p><strong>"For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast."</strong></p>
-          <p><em>Ephesians 2:8-9</em></p>
-        </div>
-      </section>
-
-      <!-- Last Played Song Section -->
-      <section class="sidebar-section">
-        <h3 class="section-title">LAST PLAYED SONG</h3>
-        <div class="song-content">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23333' width='100' height='100'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' fill='%23666' font-family='monospace'%3E[Album Art]%3C/text%3E%3C/svg%3E" alt="Album Art" class="album-art">
-          <p><strong>Loading...</strong></p>
-          <p>Last.FM integration coming soon</p>
-        </div>
-      </section>
-
-      <!-- Projects Featured Section -->
-      <section class="sidebar-section">
-        <h3 class="section-title">FEATURED</h3>
-        <div class="featured-content">
-          <div class="featured-item">
-            <h4>GitHub Repos</h4>
-            <p>Check out my projects on GitHub</p>
-          </div>
-        </div>
-      </section>
-    </aside>
-
-    <!-- Main content area -->
-    <main class="main-content">
-      <section class="content-section">
-        <h2>PROJECTS</h2>
-        
-        <div class="project">
-          <div class="project-header">
-            <h3>PROJECT 1</h3>
-            <span class="project-status">[LIVE]</span>
-          </div>
-          <p>Describe your first project here. Add details about what it does and the technologies used.</p>
-        </div>
-
-        <div class="project">
-          <div class="project-header">
-            <h3>PROJECT 2</h3>
-            <span class="project-status">[LIVE]</span>
-          </div>
-          <p>Describe your second project here. Share the story behind it.</p>
-        </div>
-
-        <div class="project">
-          <div class="project-header">
-            <h3>PROJECT 3</h3>
-            <span class="project-status">[WIP]</span>
-          </div>
-          <p>Currently working on this project. More details coming soon.</p>
-        </div>
-      </section>
-
-      <section class="content-section">
-        <h2>ABOUT</h2>
-        <p>Welcome to my personal website. This site is inspired by the minimalist, terminal aesthetic of the old web.</p>
-        <p>Here you'll find my projects, thoughts, and links to my other online profiles. Feel free to reach out!</p>
-      </section>
-    </main>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2024 Personal Walliez. Made with ❤️ and monospace fonts.</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

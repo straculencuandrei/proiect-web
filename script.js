@@ -1,76 +1,127 @@
-/* ==========================================================================
-   PRIGOANA-STYLE SITE SCRIPT
-   Minimalist Interactive Logic
-   ========================================================================== */
+const title = document.getElementById('glitchText');
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]#%&_<>*+";
 
-document.addEventListener('DOMContentLoaded', () => {
-  // ============================================================
-  // Theme Toggle
-  // ============================================================
-  const themeToggle = document.getElementById('theme-toggle');
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  
-  function setTheme(theme) {
-    if (theme === 'dark') {
-      document.body.classList.add('dark-theme');
-      themeToggle.textContent = 'THEME: LIGHT';
-    } else {
-      document.body.classList.remove('dark-theme');
-      themeToggle.textContent = 'THEME: DARK';
-    }
-    localStorage.setItem('theme', theme);
-  }
-  
-  // Set initial theme
-  setTheme(savedTheme);
-  
-  // Toggle theme on button click
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = localStorage.getItem('theme') || 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
+const glitchEffect = (target) => {
+    const originalText = target.dataset.text || target.innerText;
+    let iterations = 0;
+    const interval = setInterval(() => {
+        target.innerText = originalText.split("")
+            .map((letter, index) => {
+                if(index < iterations) return originalText[index];
+                return chars[Math.floor(Math.random() * chars.length)]
+            })
+            .join("");
+
+        if(iterations >= originalText.length) clearInterval(interval);
+        iterations += 1/3;
+    }, 30);
+};
+
+if(title) {
+    title.addEventListener('mouseover', () => glitchEffect(title));
+    setTimeout(() => glitchEffect(title), 500);
+}
+
+const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        }
     });
-  }
-  
-  // ============================================================
-  // Visitor Counter
-  // ============================================================
-  const visitorCountElement = document.getElementById('visitor-count');
-  if (visitorCountElement) {
-    let count = localStorage.getItem('visitorCount');
-    count = count ? parseInt(count) + 1 : 1;
-    localStorage.setItem('visitorCount', count);
-    visitorCountElement.textContent = count.toLocaleString();
-  }
-  
-  // ============================================================
-  // Chatbox Form Submission (REMOVED)
-  // ============================================================
-  // Chatbox functionality removed - feature discontinued
+}, observerOptions);
 
-  
-  // ============================================================
-  // Helper Functions
-  // ============================================================
-  function formatTime(date) {
-    const now = new Date();
-    const diffMs = now - date;
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMs / 3600000);
-    const diffDays = Math.floor(diffMs / 86400000);
-    
-    if (diffMins < 1) return 'just now';
-    if (diffMins < 60) return `${diffMins}m ago`;
-    if (diffHours < 24) return `${diffHours}h ago`;
-    if (diffDays < 30) return `${diffDays}d ago`;
-    
-    return date.toLocaleDateString();
-  }
-  
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
+document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    observer.observe(el);
 });
+
+document.querySelectorAll('.highlightable').forEach(codeBlock => {
+    codeBlock.addEventListener('click', function() {
+        let textToCopy;
+
+        if (this.dataset.copy) {
+            textToCopy = this.dataset.copy;
+        } else {
+            const clone = this.cloneNode(true);
+            const feedback = clone.querySelector('.copy-feedback');
+            if (feedback) feedback.remove();
+            textToCopy = clone.innerText.trim();
+        }
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            this.classList.add('copied');
+            setTimeout(() => this.classList.remove('copied'), 1500);
+        });
+    });
+});
+
+document.addEventListener('click', (e) => {
+    const header = e.target.closest('.crypto-header');
+    if (header) {
+        const content = header.nextElementSibling;
+        const toggle = header.querySelector('.crypto-toggle');
+        content.classList.toggle('active');
+        toggle.textContent = content.classList.contains('active') ? '[-]' : '[+]';
+        return;
+    }
+
+    const copyBtn = e.target.closest('[data-action="copy"]');
+    if (copyBtn) {
+        const address = copyBtn.dataset.address;
+        navigator.clipboard.writeText(address).then(() => {
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'COPIED!';
+            copyBtn.style.background = 'var(--accent)';
+            copyBtn.style.color = '#000';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+                copyBtn.style.background = '';
+                copyBtn.style.color = '';
+            }, 1500);
+        });
+        return;
+    }
+
+    const qrBtn = e.target.closest('[data-action="qr"]');
+    if (qrBtn) {
+        const address = qrBtn.dataset.address;
+        const qrContainer = qrBtn.closest('.crypto-content').querySelector('.qr-container');
+        if (qrContainer.classList.contains('active')) {
+            qrContainer.classList.remove('active');
+            qrContainer.innerHTML = '';
+            qrBtn.textContent = 'QR CODE';
+        } else {
+            qrContainer.innerHTML = '';
+            qrContainer.classList.add('active');
+            new QRCode(qrContainer, {
+                text: address,
+                width: 200,
+                height: 200,
+                colorDark: "#ffffff",
+                colorLight: "#000000",
+            });
+            qrBtn.textContent = 'HIDE QR';
+        }
+        return;
+    }
+});
+
+// Theme toggle
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+    const getTheme = () => document.documentElement.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const updateToggleText = () => {
+        themeToggle.textContent = getTheme() === 'light' ? 'THEME: LIGHT' : 'THEME: DARK';
+    };
+    updateToggleText();
+    themeToggle.addEventListener('click', () => {
+        const next = getTheme() === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateToggleText();
+    });
+}
+
+
