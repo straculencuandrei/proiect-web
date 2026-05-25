@@ -11,6 +11,22 @@
     [data-theme="light"] {
       background: #f0f0f0
     }
+    @font-face {
+      font-family: 'SF Pro Bold';
+      src: url('./sf-pro-display/SFPRODISPLAYBOLD.OTF') format('opentype');
+    }
+    @font-face {
+      font-family: 'SF Pro Light';
+      src: url('./sf-pro-display/SFPRODISPLAYREGULAR.OTF') format('opentype');
+    }
+    .sf-bold {
+      font-family: 'SF Pro Bold', sans-serif !important;
+      font-size: 1.1rem;
+    }
+    .sf-light {
+      font-family: 'SF Pro Light', sans-serif !important;
+      font-weight: 300;
+    }
   </style>
   <link rel="stylesheet" href="./style.css">
   <meta charset="UTF-8">
@@ -129,12 +145,12 @@
 
           <a href="https://github.com/straculencuandrei/coolSearch" target="_blank" class="project-card">
             <div class="card-header">
-              <span>coolSearch</span>
+              <span class="sf-bold">coolSearch</span>
               <span class="project-status">[ACTIVE]</span>
             </div>
             <div class="card-body">
               <div>
-                <p class="project-desc">coolSearch is designed for extreme speed. While traditional search tools crawl
+                <p class="project-desc sf-light">coolSearch is designed for extreme speed. While traditional search tools crawl
                   your folders one by one, coolSearch talks directly to your hard drive's "internal map" (the Master
                   File Table) to find every single file on your computer in less than a second. It combines the raw
                   power of Rust with a sleek, modern React interface to make finding files feel instant.</p>
