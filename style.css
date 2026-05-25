@@ -354,20 +354,22 @@ h2::before { content: '>' / ''; color: var(--accent); animation: blink 1s infini
     margin-bottom: 1.5rem;
     position: relative;
     background: var(--bg);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
 }
 
 .project-card::before {
     content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0;
-    background: var(--accent); transition: height 0.3s ease;
+    background: var(--card-accent, var(--accent)); transition: height 0.3s ease;
+    z-index: 10;
 }
 .project-card:hover::before { height: 100%; }
 
 .project-card:hover {
-    border-color: var(--fg);
+    background: var(--bg) !important;
+    border-color: var(--card-accent, var(--fg));
     transform: translateX(5px);
-    box-shadow: -5px 5px 0 var(--accent-dim);
+    box-shadow: -5px 5px 0 var(--card-accent-dim, var(--accent-dim));
 }
 
 .card-header {
@@ -376,7 +378,41 @@ h2::before { content: '>' / ''; color: var(--accent); animation: blink 1s infini
     background: var(--grid-dim);
     transition: background 0.3s;
 }
-.project-card:hover .card-header { background: var(--bg-hover); color: var(--accent); }
+.project-card:hover .card-header { background: var(--bg-hover); color: var(--card-accent, var(--accent)); }
+
+/* Custom Project Outlines with Scanline Shine */
+.project-card.cool-search {
+    --card-accent: #ffb700;
+    --card-accent-dim: rgba(255, 183, 0, 0.15);
+    --card-accent-bright: #ffffff;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                linear-gradient(90deg, transparent, #ffb700, #ffffff, #ffb700, transparent) border-box;
+    background-size: 100% 100%, 200% 100%;
+    background-position: 0% 0%, 0% 0%;
+    animation: borderShine 4s linear infinite;
+}
+
+.project-card.srs-modding {
+    --card-accent: #00aaff;
+    --card-accent-dim: rgba(0, 170, 255, 0.15);
+    --card-accent-bright: #ffffff;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                linear-gradient(90deg, transparent, #00aaff, #ffffff, #00aaff, transparent) border-box;
+    background-size: 100% 100%, 200% 100%;
+    background-position: 0% 0%, 0% 0%;
+    animation: borderShine 4s linear infinite;
+}
+
+@keyframes borderShine {
+    0% {
+        background-position: 0% 0%, 0% 0%;
+    }
+    100% {
+        background-position: 0% 0%, -200% 0%;
+    }
+}
 
 .card-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 150px; gap: 2rem; }
 
@@ -804,7 +840,7 @@ select:focus-visible {
 }
 
 .project-status {
-    color: var(--accent);
+    color: var(--card-accent, var(--accent));
 }
 
 .dropdown-label {
