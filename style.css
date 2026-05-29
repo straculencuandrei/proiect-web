@@ -1939,4 +1939,19 @@ nav a#vitae-tab.active {
     height: 100%;
     border: none;
     background: #fff;
-}
+}
+
+.vitae-pdf-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 100%;
+    min-height: 300px;
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 2rem;
+}
+
