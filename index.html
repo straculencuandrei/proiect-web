@@ -41,10 +41,8 @@
 
     <nav aria-label="Social and identity links" class="reveal-on-scroll">
       <a href="mailto:andrei.straculencu@yahoo.com" rel="me">E-Mail</a>
-      <a href="https://x.andrei-straculencu.workers.dev/" target="_blank" rel="noopener noreferrer me">Website</a>
       <a href="https://github.com/straculencuandrei" target="_blank" rel="noopener noreferrer me">GitHub</a>
-      <a href="https://open.spotify.com/artist/5lnJx9rHFKGFYTpF0TFzmK" target="_blank"
-        rel="noopener noreferrer me">Spotify</a>
+      <a href="#" id="vitae-tab" role="button" aria-haspopup="dialog">Vitae</a>
     </nav>
 
     <div class="grid-layout">
@@ -61,16 +59,7 @@
           </div>
         </div>
 
-        <div class="widget">
-          <span class="widget-title">VITAE</span>
-          <div class="cv-download-box">
-            <a href="./Straculencu_Andrei_CV%20(talent).pdf" download="Straculencu_Andrei_CV (talent).pdf" class="cv-download-btn">
-              <span class="cv-icon">[PDF]</span>
-              <span class="cv-text">DOWNLOAD CV</span>
-              <span class="cv-arrow">↓</span>
-            </a>
-          </div>
-        </div>
+
 
         <div class="widget">
           <span class="widget-title">SKILLS</span>
@@ -80,9 +69,7 @@
               <span class="crypto-toggle">[+]</span>
             </button>
             <div class="crypto-content active">
-              <p style="font-size: 0.75rem; color: var(--fg-muted);">• HTML / CSS (Advanced)<br>• C++ (Advanced)<br>•
-                Microsoft Office<br>• Python (Intermediate)<br>• Java (Intermediate)<br>• Reverse engineering<br>•
-                Assembly (x86/x64)<br>• JavaScript<br>• Teamwork</p>
+              <p style="font-size: 0.75rem; color: var(--fg-muted);">• C++ (Advanced)<br>• Microsoft Office<br>• Python (Intermediate)<br>• Java (Intermediate)<br>• Reverse engineering<br>• Assembly (x86/x64)<br>• JavaScript<br>• Teamwork</p>
             </div>
           </div>
           <div class="crypto-item">
@@ -195,6 +182,22 @@
         COPYLEFT STRACULENCU ANDREI 2026 | NO RIGHTS RESERVED
       </p>
     </footer>
+  </div>
+  <!-- CV Preview Modal -->
+  <div id="vitae-modal" class="vitae-modal" role="dialog" aria-modal="true" aria-label="CV Preview" hidden>
+    <div class="vitae-modal-overlay" id="vitae-modal-overlay"></div>
+    <div class="vitae-modal-content">
+      <div class="vitae-modal-header">
+        <span class="vitae-modal-title">[PDF] CURRICULUM VITAE</span>
+        <div class="vitae-modal-actions">
+          <a href="./Straculencu_Andrei_CV%20(talent).pdf" download="Straculencu_Andrei_CV (talent).pdf" class="vitae-download-btn" title="Download CV">↓ DOWNLOAD</a>
+          <button id="vitae-close" class="vitae-close-btn" aria-label="Close CV preview">[X] CLOSE</button>
+        </div>
+      </div>
+      <div class="vitae-modal-body">
+        <iframe src="./Straculencu_Andrei_CV%20(talent).pdf" class="vitae-iframe" title="Curriculum Vitae Preview"></iframe>
+      </div>
+    </div>
   </div>
   <script src="./script.js"></script>
 </body>

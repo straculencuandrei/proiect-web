@@ -124,4 +124,40 @@ if (themeToggle) {
     });
 }
 
+// Vitae modal
+(function () {
+    const vitaeTab     = document.getElementById('vitae-tab');
+    const modal        = document.getElementById('vitae-modal');
+    const closeBtn     = document.getElementById('vitae-close');
+    const overlay      = document.getElementById('vitae-modal-overlay');
 
+    if (!vitaeTab || !modal) return;
+
+    function openModal() {
+        modal.removeAttribute('hidden');
+        vitaeTab.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+
+    function closeModal() {
+        modal.setAttribute('hidden', '');
+        vitaeTab.classList.remove('active');
+        document.body.style.overflow = '';
+        vitaeTab.focus();
+    }
+
+    vitaeTab.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
+            closeModal();
+        }
+    });
+})();
