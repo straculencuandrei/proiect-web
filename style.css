@@ -368,6 +368,16 @@ aside {
     margin-bottom: 1.5rem;
 }
 
+.profile-pic {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    image-rendering: pixelated;
+    display: block;
+}
+
 .widget-title {
     font-family: var(--font-sans);
     font-size: 0.9rem;

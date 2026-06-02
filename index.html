@@ -49,8 +49,10 @@
       <aside class="reveal-on-scroll">
         <div class="widget">
           <span class="widget-title">ABOUT ME</span>
+          <img src="neco_arc.png" alt="Straculencu Andrei" class="profile-pic">
           <div id="link" class="verse-link">
             <strong>
+              <p style="font-size: 0.9rem; color: var(--fg-bright); margin-bottom: 5px;">Straculencu Andrei</p>
               <p class="verse-text">I’m an Engineering Student with a genuine curiosity for how complex systems work
                 under the hood. Right now, I’m focused on software development, specifically low-level programming and
                 C++, with the ultimate goal of building a career centered around software internals, reverse
@@ -118,6 +120,19 @@
             </div>
           </div>
         </div>
+
+        <div class="widget">
+          <span class="widget-title">EXPERIENCE</span>
+          <div class="crypto-item">
+            <button class="crypto-header" type="button">
+              <span>WORK EXPERIENCE</span>
+              <span class="crypto-toggle">[+]</span>
+            </button>
+            <div class="crypto-content">
+              <p style="font-size: 0.75rem; color: var(--fg-muted);">• <b>Freelance Sound Designer & Compositor</b><br>Self-Employed<br>2018 - Present<br><br>• <b>Software Development Intern</b><br>IT Company (Simulated)<br>2023 - 2024</p>
+            </div>
+          </div>
+        </div>
       </aside>
 
       <main>
@@ -127,37 +142,34 @@
             <span class="section-number">01</span>
           </div>
 
-          <a href="https://github.com/straculencuandrei/coolSearch" target="_blank" class="project-card cool-search">
-            <div class="card-header">
-              <span><span class="project-title">coolSearch</span> &nbsp;&nbsp; <span class="project-lang">| TypeScript
-                  (67%) Rust (24%)</span></span>
-              <span class="project-status">[ACTIVE]</span>
-            </div>
-            <div class="card-body">
-              <div>
-                <p class="project-desc">coolSearch is designed for extreme speed. While traditional search tools crawl
-                  your folders one by one, coolSearch talks directly to your hard drive's "internal map" (the Master
-                  File Table) to find every single file on your computer in less than a second. It combines the raw
-                  power of Rust with a sleek, modern React interface to make finding files feel instant.</p>
-              </div>
-            </div>
-          </a>
+          <div class="projects-controls" style="display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <input type="text" id="project-search" placeholder="SEARCH PROJECTS..." style="flex: 1; min-width: 150px; background: var(--bg); border: 1px solid var(--border-mid); color: var(--fg); padding: 8px; font-family: var(--font-mono); font-size: 0.75rem;">
+            <select id="project-lang-filter" style="width: auto; min-width: 120px;">
+              <option value="">ALL LANGUAGES</option>
+            </select>
+            <select id="project-sort" style="width: auto; min-width: 120px;">
+              <option value="updated">SORT: UPDATED</option>
+              <option value="stars">SORT: STARS</option>
+            </select>
+          </div>
 
-          <a href="https://github.com/straculencuandrei/srs-modding-tools" target="_blank"
-            class="project-card srs-modding">
-            <div class="card-header">
-              <span><span class="project-title">srs-modding-tools</span> &nbsp;&nbsp; <span class="project-lang">|
-                  Python (80%) PowerShell (20%)</span></span>
-              <span class="project-status">[ACTIVE]</span>
-            </div>
-            <div class="card-body">
-              <div>
-                <p class="project-desc">srs modding tools<br>features - run game checks and verify module
-                  integrity.<br>extraction - tools to help extract and manage game archives.<br>RE - scripts for
-                  searching strings and analyzing game logic.<br>py + ps1</p>
-              </div>
-            </div>
-          </a>
+          <div id="projects-loading" class="loading-blink" style="text-align: center; padding: 2rem; color: var(--fg-dim); font-family: var(--font-mono);">
+            [ LOADING PROJECTS FROM GITHUB API... ]
+          </div>
+
+          <div id="projects-error" style="display: none; border: 1px dashed #ff4444; padding: 1.5rem; background: rgba(255, 68, 68, 0.05); color: #ff4444; margin-bottom: 1.5rem; font-family: var(--font-mono);">
+            Ups! Nu am putut încărca proiectele de pe GitHub momentan. Încărcăm lista de rezervă...
+          </div>
+
+          <div id="projects-fallback-msg" style="display: none; border: 1px dashed var(--accent); padding: 1rem; color: var(--fg-muted); margin-bottom: 1.5rem; font-family: var(--font-mono); font-size: 0.75rem;">
+            [ NOTĂ: Sunt afișate proiectele de rezervă (offline) deoarece pe GitHub sunt mai puțin de 5 repository-uri sau API-ul nu a putut fi accesat. ]
+          </div>
+
+          <div id="projects-container"></div>
+
+          <div id="projects-pagination-container" style="text-align: center; margin-top: 1.5rem; display: none;">
+            <button id="load-more-btn" class="theme-toggle-btn" type="button">LOAD MORE PROJECTS</button>
+          </div>
         </section>
 
         <section id="music" class="section-block reveal-on-scroll">

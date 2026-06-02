@@ -161,3 +161,220 @@ if (themeToggle) {
         }
     });
 })();
+
+// GitHub Projects Integration
+(function() {
+    const backupProjects = [
+        {
+            name: "coolSearch",
+            description: "coolSearch is designed for extreme speed. While traditional search tools crawl your folders one by one, coolSearch talks directly to your hard drive's \"internal map\" (the Master File Table) to find every single file on your computer in less than a second. It combines the raw power of Rust with a sleek, modern React interface.",
+            language: "TypeScript",
+            stargazers_count: 3,
+            forks_count: 0,
+            html_url: "https://github.com/straculencuandrei/coolSearch",
+            updated_at: "2026-05-15T12:00:00Z"
+        },
+        {
+            name: "srs-modding-tools",
+            description: "srs modding tools. Features - run game checks and verify module integrity. Extraction - tools to help extract and manage game archives. RE - scripts for searching strings and analyzing game logic.",
+            language: "Python",
+            stargazers_count: 1,
+            forks_count: 0,
+            html_url: "https://github.com/straculencuandrei/srs-modding-tools",
+            updated_at: "2026-05-10T12:00:00Z"
+        },
+        {
+            name: "low-level-kernel-experiments",
+            description: "A collection of low-level kernel driver experiments and OS research written in C++ and Assembly. Explores memory isolation and process protection.",
+            language: "C++",
+            stargazers_count: 5,
+            forks_count: 1,
+            html_url: "https://github.com/straculencuandrei/low-level-kernel-experiments",
+            updated_at: "2026-04-20T12:00:00Z"
+        },
+        {
+            name: "binary-analyzer-tool",
+            description: "Static and dynamic binary analysis scripts utilizing Capstone and Unicorn engines to inspect x86/x64 instruction flows.",
+            language: "Python",
+            stargazers_count: 2,
+            forks_count: 0,
+            html_url: "https://github.com/straculencuandrei/binary-analyzer-tool",
+            updated_at: "2026-03-12T12:00:00Z"
+        },
+        {
+            name: "crypto-wallet-verifier",
+            description: "An offline cryptographic wallet integrity and signature verifier for public-private key validation.",
+            language: "JavaScript",
+            stargazers_count: 0,
+            forks_count: 0,
+            html_url: "https://github.com/straculencuandrei/crypto-wallet-verifier",
+            updated_at: "2026-02-05T12:00:00Z"
+        }
+    ];
+
+    let allProjects = [];
+    let filteredProjects = [];
+    let currentPage = 1;
+    const pageSize = 6;
+
+    const container = document.getElementById('projects-container');
+    const loadingEl = document.getElementById('projects-loading');
+    const errorEl = document.getElementById('projects-error');
+    const fallbackEl = document.getElementById('projects-fallback-msg');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const paginationContainer = document.getElementById('projects-pagination-container');
+    const searchInput = document.getElementById('project-search');
+    const langFilter = document.getElementById('project-lang-filter');
+    const sortSelect = document.getElementById('project-sort');
+
+    if (!container) return;
+
+    async function initProjects() {
+        try {
+            const response = await fetch('https://api.github.com/users/straculencuandrei/repos');
+            if (!response.ok) throw new Error('API request failed');
+            
+            const repos = await response.json();
+            // Filter out forks
+            let fetched = repos.filter(repo => !repo.fork);
+            
+            // Check if we have at least 5 projects
+            if (fetched.length < 5) {
+                fallbackEl.style.display = 'block';
+                // Merge with backup projects to ensure at least 5 and variety
+                const fetchedNames = new Set(fetched.map(r => r.name.toLowerCase()));
+                backupProjects.forEach(bp => {
+                    if (!fetchedNames.has(bp.name.toLowerCase())) {
+                        fetched.push(bp);
+                    }
+                });
+            }
+            allProjects = fetched;
+        } catch (e) {
+            console.error('Error fetching GitHub repos:', e);
+            errorEl.style.display = 'block';
+            fallbackEl.style.display = 'block';
+            allProjects = backupProjects;
+        } finally {
+            loadingEl.style.display = 'none';
+            setupLangFilter();
+            applyFilterAndSort();
+        }
+    }
+
+    function setupLangFilter() {
+        const languages = new Set();
+        allProjects.forEach(repo => {
+            if (repo.language) languages.add(repo.language);
+        });
+        languages.forEach(lang => {
+            const opt = document.createElement('option');
+            opt.value = lang;
+            opt.textContent = lang.toUpperCase();
+            langFilter.appendChild(opt);
+        });
+    }
+
+    function applyFilterAndSort() {
+        const query = searchInput.value.toLowerCase().trim();
+        const selectedLang = langFilter.value;
+        const sortBy = sortSelect.value;
+
+        // Filter
+        filteredProjects = allProjects.filter(repo => {
+            const matchesQuery = repo.name.toLowerCase().includes(query) || 
+                                 (repo.description && repo.description.toLowerCase().includes(query));
+            const matchesLang = !selectedLang || repo.language === selectedLang;
+            return matchesQuery && matchesLang;
+        });
+
+        // Sort
+        filteredProjects.sort((a, b) => {
+            if (sortBy === 'stars') {
+                return (b.stargazers_count || 0) - (a.stargazers_count || 0);
+            } else {
+                // Default: updated
+                return new Date(b.updated_at) - new Date(a.updated_at);
+            }
+        });
+
+        currentPage = 1;
+        renderProjects();
+    }
+
+    function renderProjects() {
+        container.innerHTML = '';
+        const limit = currentPage * pageSize;
+        const toShow = filteredProjects.slice(0, limit);
+
+        if (toShow.length === 0) {
+            container.innerHTML = `<div style="text-align: center; padding: 2rem; color: var(--fg-dim); font-family: var(--font-mono);">
+                [ NO PROJECTS MATCH THE SEARCH CRITERIA ]
+            </div>`;
+            paginationContainer.style.display = 'none';
+            return;
+        }
+
+        toShow.forEach(repo => {
+            let customClass = '';
+            const lowerName = repo.name.toLowerCase();
+            if (lowerName === 'coolsearch') {
+                customClass = 'cool-search';
+            } else if (lowerName === 'srs-modding-tools' || lowerName === 'srs-modding') {
+                customClass = 'srs-modding';
+            }
+
+            const card = document.createElement('a');
+            card.href = repo.html_url;
+            card.target = '_blank';
+            card.className = `project-card ${customClass}`;
+            
+            card.innerHTML = `
+                <div class="card-header">
+                  <span>
+                    <span class="project-title">${escapeHTML(repo.name)}</span>
+                    &nbsp;&nbsp;
+                    <span class="project-lang">| ${escapeHTML(repo.language || 'Plain Text')}</span>
+                  </span>
+                  <span class="project-status">[${repo.stargazers_count || 0} ★ / ${repo.forks_count || 0} ⑂]</span>
+                </div>
+                <div class="card-body">
+                  <div>
+                    <p class="project-desc">${escapeHTML(repo.description || 'Fără descriere disponibilă.')}</p>
+                  </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        if (filteredProjects.length > limit) {
+            paginationContainer.style.display = 'block';
+        } else {
+            paginationContainer.style.display = 'none';
+        }
+    }
+
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>'"]/g, 
+            tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag)
+        );
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', applyFilterAndSort);
+    langFilter.addEventListener('change', applyFilterAndSort);
+    sortSelect.addEventListener('change', applyFilterAndSort);
+    loadMoreBtn.addEventListener('click', () => {
+        currentPage++;
+        renderProjects();
+    });
+
+    initProjects();
+})();
