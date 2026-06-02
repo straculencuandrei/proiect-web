@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://teoflr.github.io/web-2026/final-project.html -->
+<html lang="ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Proiect de Semestru – Cerințe</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 2rem;
+            line-height: 1.6;
+            color: #24292e;
+            background: #fff;
+        }
+
+        h1 {
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 10px;
+        }
+
+        nav a {
+            color: #0366d6;
+            font-weight: 600;
+            padding: 0.4rem 0.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        nav a:hover {
+            background: rgba(3, 102, 214, 0.1);
+        }
+
+        nav a.active {
+            background: #0366d6;
+            color: #fff;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #d0d7de;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 10px 18px rgba(36, 41, 46, 0.05);
+            max-width: 900px;
+        }
+
+        .card h2 {
+            margin-top: 1.25rem;
+        }
+
+        .muted {
+            color: #6a737d;
+            font-size: 0.95rem;
+        }
+
+        code.literal {
+            background: #f6f8fa;
+            padding: 0.08rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        ul {
+            margin: 0.5rem 0 1rem 1.25rem;
+        }
+
+        ol {
+            margin: 0.5rem 0 1rem 1.25rem;
+        }
+
+        .note {
+            background: #fff7e6;
+            padding: 0.6rem;
+            border-radius: 8px;
+            border: 1px solid #f0d9b5;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="https://teoflr.github.io/web-2026/index.html">Cuprins</a>
+        <a href="https://teoflr.github.io/web-2026/week1.html">Săptămâna 1</a>
+        <a href="https://teoflr.github.io/web-2026/week2.html">Săptămâna 2</a>
+        <a href="https://teoflr.github.io/web-2026/week3.html">Săptămâna 3</a>
+        <a href="https://teoflr.github.io/web-2026/week4.html">Săptămâna 4</a>
+        <a href="https://teoflr.github.io/web-2026/week5.html">Săptămâna 5</a>
+        <a href="https://teoflr.github.io/web-2026/week6.html">Săptămâna 6</a>
+        <a href="https://teoflr.github.io/web-2026/week7.html">Săptămâna 7</a>
+        <a href="https://teoflr.github.io/web-2026/week8.html">Săptămâna 8</a>
+        <a href="https://teoflr.github.io/web-2026/week9.html">Săptămâna 9</a>
+        <a href="https://teoflr.github.io/web-2026/final-project.html" class="active">Proiect Final</a>
+        <a href="https://teoflr.github.io/web-2026/proiect-final-ea.html">Proiect Final - EA</a>
+    </nav>
+
+    <div>
+        <h1>Proiect de Semestru: Portofoliu Web Dinamic (GitHub API Integration)</h1>
+
+        <h2>Obiectivul Proiectului</h2>
+        <p>Dezvoltarea unei pagini web personale (CV / Portofoliu) care se integrează dinamic cu API-ul oficial GitHub
+            pentru a prelua și afișa proiectele personale ale studentului într-un mod atractiv și organizat.</p>
+
+        <h2>Cerințe Obligatorii (nota 5 - 7)</h2>
+        <ol>
+            <li>
+                <strong>Arhitectură și Conținutul Paginii</strong>
+                <ul>
+                    <li>Secțiune Profil: Pagina trebuie să conțină o secțiune de introducere (Nume, Rol/Tehnologii
+                        preferate, o scurtă descriere și o poză de profil).</li>
+                    <li>Secțiune Portofoliu: O zonă dedicată unde vor fi încărcate dinamic repository-urile de pe
+                        GitHub.</li>
+                    <li>Experiență de muncă (dacă există): Include experiență relevantă în domeniul IT sau alte joburi,
+                        cu rol, companie și perioadă (ex: "Front-end Developer — Compania X — 2022‑2023").</li>
+                    <li>Educație: Include nivelul de educație, instituția și perioada (ex: "Facultatea de Informatică,
+                        Universitatea Y — 2020‑2024").</li>
+                    <li>Personalizare: Pagina/paginile trebuie sa aibă un design unic și personalizat - care să reflecte
+                        ceva specific studentului.</li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Integrarea cu GitHub API (Frontend/Fetch)</strong>
+                <ul>
+                    <li>Efectuarea unui request asincron (folosind <code class="literal">fetch</code> sau <code class="literal">axios</code> în JavaScript) către endpoint-ul public: <code class="literal">https://api.github.com/users/USERNAME/repos</code>.</li>
+                    <li>Afișarea a cel puțin 5 proiecte sub formă de carduri (cards).</li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Informații minime per Card de Proiect</strong>
+                <ul>
+                    <li>Numele repository-ului (<code class="literal">name</code>).</li>
+                    <li>Descrierea proiectului (<code class="literal">description</code>) – Dacă descrierea lipsește pe
+                        GitHub, se va afișa un text default (ex: "Fără descriere disponibilă").</li>
+                    <li>Limbajul principal de programare (<code class="literal">language</code>).</li>
+                    <li>Numărul de stele (<code class="literal">stargazers_count</code>) și numărul de fork-uri (<code class="literal">forks_count</code>).</li>
+                    <li>Un buton/link funcțional către codul sursă de pe GitHub (<code class="literal">html_url</code>).
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Design și Responsivitate</strong>
+                <p class="muted">Interfața trebuie să fie complet responsivă (telefon, tabletă, desktop). Se pot folosi
+                    CSS Grid/Flexbox sau framework-uri precum Tailwind CSS / Bootstrap.</p>
+            </li>
+        </ol>
+        <div class="note">
+            <p><strong>Notă:</strong> Pentru cazul in care sunt putine proiecte, se va afișa un mesaj corespunzător si mai apoi se vor afișa o lista hardcodata de proiecte citite dintr-un json sau o listă de proiecte incarcate pe un database hostat local(MySQL ...).</p>
+        </div>
+        <h2>Cerințe Medii (nota 8 - 9)</h2>
+        <ol>
+            <li>
+                <strong>Filtrare și Sortare (Client-side)</strong>
+                <ul>
+                    <li>Excluderea Fork-urilor: Proiectele afișate trebuie să fie doar cele create de student (<code class="literal">fork === false</code>).</li>
+                    <li>Ordonare: Proiectele trebuie sortate automat după data ultimei actualizări (<code class="literal">updated_at</code>) sau după numărul de stele.</li>
+                    <li>Sistem de filtrare în pagină: Implementarea unei bare de căutare (Search Input) sau a unor
+                        butoane de filtrare după limbajul de programare, care să filtreze cardurile în timp real, fără a
+                        reîncărca pagina.</li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Experiența Utilizatorului (UX/UI)</strong>
+                <ul>
+                    <li>Stare de Loading: Afișarea unui spinner sau a unui schelet de animație în timp ce se așteaptă
+                        răspunsul de la API.</li>
+                    <li>Tratarea Erorilor (Error Handling): Dacă API-ul dă eroare (ex: limită de request-uri atinsă,
+                        utilizator inexistent, lipsă internet), aplicația nu trebuie să crape. Se va afișa un mesaj
+                        prietenos în UI (ex: "Ups! Nu am putut încărca proiectele momentan.").</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>Cerințe Avansate / Bonus (măcar 1 subpunct pentru nota 10)</h2>
+        <ol>
+            <li>
+                <strong>Securitate și Backend (Serverless / Proxy)</strong>
+                <ul>
+                    <li>Pentru a evita limita de request-uri (Rate Limiting) de 60/oră a GitHub, studenții trebuie să
+                        genereze un Personal Access Token (PAT).</li>
+                    <li>Cerință strictă: Token-ul <strong>NU</strong> are voie să apară în codul din browser (Frontend).
+                    </li>
+                    <li>Studentul trebuie să creeze un mini-server proxy (Node.js/Express, funcții Serverless în
+                        Vercel/Netlify sau PHP) care să facă cererea securizată către GitHub (folosind variabile de
+                        mediu <code class="literal">.env</code>) și să servească datele către frontend.</li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Paginare sau "Load More"</strong>
+                <p class="muted">Dacă utilizatorul are mai mult de 6 proiecte, se va implementa un sistem de paginare
+                    sau un buton de "Load More" pentru a nu aglomera pagina la încărcare.</p>
+            </li>
+
+            <li>
+                <strong>Detalii suplimentare (ReadMe / Deploy)</strong>
+                <ul>
+                    <li>Deploy: Proiectul trebuie să fie live (funcțional) pe o platformă gratuită (GitHub Pages,
+                        Vercel, Netlify).</li>
+                    <li>README profesional: Proiectul în sine trebuie să aibă un fișier <code class="literal">README.md</code> pe GitHub bine structurat, cu instrucțiuni de instalare
+                        locală și tehnologiile folosite.</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    <div class="note">
+        <p><strong>Notă:</strong> Pentru a obține o notă precum cele menționate în paragrafele de mai sus, trebuie să
+            aveți idee despre ce se cere, cum ați (sau mai bine "ați") implementat cerințele și pe alocuri să faceți
+            modificări la cod.</p>
+    </div>
+
+
+</body></html>
