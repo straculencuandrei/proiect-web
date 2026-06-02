@@ -2,7 +2,7 @@
 
 Acesta este un portofoliu web personal dinamic, minimalist și interactiv, construit pentru proiectul de semestru. Designul este inspirat din estetica terminal/retro (monospaced), cu suport pentru teme Light/Dark, adaptat special pentru a integra direct proiectele de pe GitHub.
 
-## 🚀 Tehnologii Utilizate
+## Tehnologii Utilizate
 
 - **Frontend**: HTML5, Vanilla JavaScript (ES6+), CSS3 (Flexbox, Grid, custom styling)
 - **Integrare API**: GitHub REST API (asincron, prin Fetch API client-side)
@@ -12,7 +12,7 @@ Acesta este un portofoliu web personal dinamic, minimalist și interactiv, const
 
 ---
 
-## 🛠️ Cerințe Implementate (Bifate 100%)
+## Cerințe Implementate (Bifate 100%)
 
 ### 1. Arhitectură și Conținutul Paginii (Nota 5-7)
 - **Secțiune Profil**: Zonă cu numele studentului (**Straculencu Andrei**), imaginea de profil (`neco_arc.png`), rol/tehnologii preferate și o descriere profesională.
@@ -40,7 +40,7 @@ Acesta este un portofoliu web personal dinamic, minimalist și interactiv, const
 
 ---
 
-## 💻 Instalare și Rulare Locală
+## Instalare și Rulare Locală
 
 Proiectul nu necesită compilare sau dependințe complexe, fiind un site web static cu JavaScript nativ.
 
@@ -63,7 +63,7 @@ Proiectul nu necesită compilare sau dependințe complexe, fiind un site web sta
 
 ---
 
-## 🎨 Structura Fișierelor
+## Structura Fișierelor
 
 ```
 ├── index.html                  - Pagina principală a portofoliului
