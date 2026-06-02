@@ -1,26 +1,3 @@
-const title = document.getElementById('glitchText');
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789[]#%&_<>*+";
-
-const glitchEffect = (target) => {
-    const originalText = target.dataset.text || target.innerText;
-    let iterations = 0;
-    const interval = setInterval(() => {
-        target.innerText = originalText.split("")
-            .map((letter, index) => {
-                if(index < iterations) return originalText[index];
-                return chars[Math.floor(Math.random() * chars.length)]
-            })
-            .join("");
-
-        if(iterations >= originalText.length) clearInterval(interval);
-        iterations += 1/3;
-    }, 30);
-};
-
-if(title) {
-    title.addEventListener('mouseover', () => glitchEffect(title));
-    setTimeout(() => glitchEffect(title), 500);
-}
 
 const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
 const observer = new IntersectionObserver((entries) => {
