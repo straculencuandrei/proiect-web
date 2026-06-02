@@ -65,46 +65,6 @@ document.addEventListener('click', (e) => {
         toggle.textContent = content.classList.contains('active') ? '[-]' : '[+]';
         return;
     }
-
-    const copyBtn = e.target.closest('[data-action="copy"]');
-    if (copyBtn) {
-        const address = copyBtn.dataset.address;
-        navigator.clipboard.writeText(address).then(() => {
-            const originalText = copyBtn.textContent;
-            copyBtn.textContent = 'COPIED!';
-            copyBtn.style.background = 'var(--accent)';
-            copyBtn.style.color = '#000';
-            setTimeout(() => {
-                copyBtn.textContent = originalText;
-                copyBtn.style.background = '';
-                copyBtn.style.color = '';
-            }, 1500);
-        });
-        return;
-    }
-
-    const qrBtn = e.target.closest('[data-action="qr"]');
-    if (qrBtn) {
-        const address = qrBtn.dataset.address;
-        const qrContainer = qrBtn.closest('.crypto-content').querySelector('.qr-container');
-        if (qrContainer.classList.contains('active')) {
-            qrContainer.classList.remove('active');
-            qrContainer.innerHTML = '';
-            qrBtn.textContent = 'QR CODE';
-        } else {
-            qrContainer.innerHTML = '';
-            qrContainer.classList.add('active');
-            new QRCode(qrContainer, {
-                text: address,
-                width: 200,
-                height: 200,
-                colorDark: "#ffffff",
-                colorLight: "#000000",
-            });
-            qrBtn.textContent = 'HIDE QR';
-        }
-        return;
-    }
 });
 
 // Theme toggle
@@ -294,7 +254,7 @@ if (themeToggle) {
                 return (b.stargazers_count || 0) - (a.stargazers_count || 0);
             } else {
                 // Default: updated
-                return new Date(b.updated_at) - new Date(a.updated_at);
+                return (Date.parse(b.updated_at) || 0) - (Date.parse(a.updated_at) || 0);
             }
         });
 
